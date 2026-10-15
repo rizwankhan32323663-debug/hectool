@@ -1,0 +1,5 @@
+# HecTool — Netlify configuration.
+# The AI function calls Pollinations, which can take several seconds to
+# answer (reasoning model). Give the function the maximum headroom.
+[functions."ai"]
+  timeout = 26
