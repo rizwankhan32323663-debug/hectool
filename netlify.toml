@@ -2,9 +2,17 @@
 # The AI function calls Pollinations, which can take several seconds to
 # answer (reasoning model). Give the function the maximum headroom.
 [functions."ai"]
-  timeout = 26
-
+timeout=26
 [[redirects]]
-  from = "/api/ai"
-  to = "/.netlify/functions/ai"
-  status = 200
+from="/api/ai"
+to="/.netlify/functions/ai"
+status=200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://open.er-api.com; media-src 'self' blob:; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(self), geolocation=(), payment=(), usb=()"
