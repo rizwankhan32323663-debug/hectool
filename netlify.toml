@@ -3,3 +3,8 @@
 # answer (reasoning model). Give the function the maximum headroom.
 [functions."ai"]
   timeout = 26
+
+[[redirects]]
+  from = "/api/ai"
+  to = "/.netlify/functions/ai"
+  status = 200
