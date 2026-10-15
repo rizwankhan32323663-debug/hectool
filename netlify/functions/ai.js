@@ -133,24 +133,38 @@ exports.handler = async (event) => {
     const prompt = buildPrompt(task, input, options);
     if (!prompt) return fail(400);
 
-    // Pollinations: single attempt, model "openai" (the only anonymous model;
-    // its canonical name is "openai-fast"). No retry, no fallback chain.
-    // Only choices[0].message.content is used — never the reasoning field.
-    let res;
-    try {
-      res = await fetch("https://text.pollinations.ai/openai", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          model: "openai",
-          messages: [{ role: "user", content: prompt }],
-          temperature: 0.7,
-          max_tokens: 2048,
-        }),
-      });
-    } catch {
-      return fail(502);
+    // Pollinations: up to 2 attempts (initial + ONE retry on retryable
+    // failure), model "openai" (the only anonymous model; its canonical
+    // name is "openai-fast"). No fallback chain. Only
+    // choices[0].message.content is used — never the reasoning field.
+    // Retryable: network failure, or HTTP 429 / 502 / 503 / 504.
+    // Non-retryable statuses keep the original mapping (429→429,
+    // 400/413/422→400, 401/403/404→403, other→502) on the final attempt.
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    let res = null;
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        res = await fetch("https://text.pollinations.ai/openai", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            model: "openai",
+            messages: [{ role: "user", content: prompt }],
+            temperature: 0.7,
+            max_tokens: 2048,
+          }),
+        });
+      } catch {
+        res = null;
+      }
+      if (res && res.ok) break;
+      const retryable =
+        res === null || res.status === 429 || res.status === 502 || res.status === 503 || res.status === 504;
+      if (!retryable) break;
+      if (attempt === 0) await sleep(1000);
     }
+
+    if (!res) return fail(502);
 
     if (!res.ok) {
       if (res.status === 429) return fail(429);
