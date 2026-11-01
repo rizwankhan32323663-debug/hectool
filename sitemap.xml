@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://hectool.netlify.app/</loc><lastmod>2026-10-21</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://hectool.netlify.app/</loc><lastmod>2026-11-01</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://hectool.netlify.app/tools/</loc><lastmod>2026-10-21</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://hectool.netlify.app/ai-tools/</loc><lastmod>2026-10-21</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://hectool.netlify.app/calculators/</loc><lastmod>2026-10-21</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
@@ -192,4 +192,20 @@
   <url><loc>https://hectool.netlify.app/tools/url-slug-generator/</loc><lastmod>2026-10-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://hectool.netlify.app/tools/meta-tag-generator/</loc><lastmod>2026-10-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://hectool.netlify.app/tools/robots-txt-generator/</loc><lastmod>2026-10-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hectool.netlify.app/tools/resume-builder/</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hectool.netlify.app/tools/sip-calculator/</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hectool.netlify.app/tools/zakat-calculator/</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hectool.netlify.app/tools/gst-calculator/</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hectool.netlify.app/tools/typing-speed-test/</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hectool.netlify.app/tools/passport-photo-resizer/</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hectool.netlify.app/tools/click-speed-test/</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hectool.netlify.app/tools/reaction-time-test/</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hectool.netlify.app/tools/what-is-my-ip/</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hectool.netlify.app/tools/urdu-keyboard/</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hectool.netlify.app/tools/roman-urdu-to-urdu-converter/</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hectool.netlify.app/tools/screen-recorder/</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hectool.netlify.app/tools/youtube-thumbnail-maker/</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hectool.netlify.app/tools/matrix-calculator/</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hectool.netlify.app/tools/iban-validator/</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hectool.netlify.app/tools/xml-sitemap-generator/</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

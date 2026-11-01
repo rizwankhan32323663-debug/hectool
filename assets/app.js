@@ -179,19 +179,34 @@ const tools=[
 {id:'url-slug-generator',name:'URL Slug Generator',cat:'Text Utilities',icon:'case',desc:'Turn any title into a clean, SEO-friendly URL slug.',keys:'slug generator url permalink seo title link'},
 {id:'meta-tag-generator',name:'Meta Tag Generator',cat:'Developer Tools',icon:'diff',desc:'Build SEO and social meta tags for any page and copy the ready-to-paste code.',keys:'meta tag generator seo open graph twitter card head tags'},
 {id:'robots-txt-generator',name:'Robots.txt Generator',cat:'Developer Tools',icon:'text',desc:'Create a robots.txt file with allow and disallow rules and a sitemap line.',keys:'robots.txt generator seo crawlers sitemap disallow'},
+{id:'resume-builder',name:'Resume Builder',cat:'Business',icon:'text',desc:'Build a clean, print-ready resume from a form — no sign-up, PDF via print.',keys:'resume cv job application work history'},
+{id:'sip-calculator',name:'SIP Calculator',cat:'Calculators',icon:'calc',desc:'Estimate SIP growth: monthly investment, expected return and years, with a year-by-year table.',keys:'sip mutual fund investment growth return monthly'},
+{id:'zakat-calculator',name:'Zakat Calculator',cat:'Calculators',icon:'calc',desc:'Work out 2.5% Zakat on cash, gold, silver and business assets above the nisab you enter.',keys:'zakat nisab islamic charity wealth 2.5 percent'},
+{id:'gst-calculator',name:'GST Calculator',cat:'Calculators',icon:'calc',desc:'Add or remove GST/VAT: enter an amount and rate to get the tax amount and totals.',keys:'gst vat tax inclusive exclusive rate'},
+{id:'typing-speed-test',name:'Typing Speed Test',cat:'Student',icon:'text',desc:'60-second typing test with WPM and accuracy, in English or Urdu passages.',keys:'typing speed test wpm accuracy keyboard'},
+{id:'passport-photo-resizer',name:'Passport Photo Resizer',cat:'Image Tools',icon:'resize',desc:'Resize a photo to passport or exam sizes and compress it to 20, 30 or 50 KB targets.',keys:'passport photo resize kb compress exam 20kb 30kb 50kb'},
+{id:'click-speed-test',name:'Click Speed Test',cat:'Generators & Fun',icon:'age',desc:'Click as fast as you can in 10 seconds and get your clicks-per-second score.',keys:'click speed test cps clicker game'},
+{id:'reaction-time-test',name:'Reaction Time Test',cat:'Generators & Fun',icon:'age',desc:'Test your reaction time: tap when the screen turns green, best of 5 rounds.',keys:'reaction time test reflex speed ms'},
+{id:'what-is-my-ip',name:'What Is My IP',cat:'Developer Tools',icon:'format',desc:'See your public IP address plus browser, device and screen details, read locally.',keys:'ip address what is my ip location browser device'},
+{id:'urdu-keyboard',name:'Urdu Keyboard',cat:'Text Utilities',icon:'case',desc:'Type Urdu online with an on-screen Urdu keyboard, then copy your text.',keys:'urdu keyboard type urdu online urdu typing'},
+{id:'roman-urdu-to-urdu-converter',name:'Roman Urdu to Urdu Converter',cat:'Text Utilities',icon:'aitrans',desc:'Convert Roman Urdu words to Urdu script with a built-in word dictionary.',keys:'roman urdu to urdu converter transliteration urdu script'},
+{id:'screen-recorder',name:'Screen Recorder',cat:'Audio',icon:'aicap',desc:'Record your screen or a browser tab in this browser and download the video.',keys:'screen recorder record screen capture video download'},
+{id:'youtube-thumbnail-maker',name:'YouTube Thumbnail Maker',cat:'Social Media',icon:'resize',desc:'Make a 1280×720 YouTube thumbnail: upload a background, add bold text, download PNG.',keys:'youtube thumbnail maker 1280x720 thumbnail text png'},
+{id:'matrix-calculator',name:'Matrix Calculator',cat:'Calculators',icon:'calc',desc:'Add, subtract, multiply, transpose and find determinants of 2×2 and 3×3 matrices.',keys:'matrix calculator determinant multiply add transpose 2x2 3x3'},
+{id:'iban-validator',name:'IBAN Validator',cat:'Developer Tools',icon:'format',desc:'Check an IBAN: format, country length and the mod-97 checksum.',keys:'iban validator check checksum mod-97 bank account'},
+{id:'xml-sitemap-generator',name:'XML Sitemap Generator',cat:'Developer Tools',icon:'format',desc:'Turn a list of URLs into a valid sitemap.xml file to download.',keys:'sitemap generator xml urls seo'},
 ];
 const cats=['All','AI Tools','Calculators','Converters','Text Utilities','Image Tools','Developer Tools','Color Tools','Date & Time','Health & Daily','Generators & Fun','PDF & Documents','AI Image Tools','Audio','Social Media','Student','Business'];
-const catSlug=(c)=>c.toLowerCase().replace(/&/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const svgIcon=(i)=>`<div class="tool-icon" aria-hidden="true"><span style="font-weight:800;font-size:20px">${icons[i]}</span></div>`;
-const card=(t,i=0)=>`<article class="tool-card reveal" style="transition-delay:${Math.min(i*55,330)}ms" data-cat="${t.cat}" tabindex="0" role="link" data-open="${t.id}">${svgIcon(t.icon)}<h3>${t.name}</h3><p>${t.desc}</p><div class="tool-meta"><span class="category-tag">${t.cat}</span><span class="go">Open →</span></div></article>`;
-function home(){window.__toolToken=(window.__toolToken||0)+1;document.title='HecTool — 174 Free AI & Online Tools, No Sign-Up';app.innerHTML=`
-<section class="hero"><div class="wrap"><div class="hero-inner"><p class="hero-badge rise"><span class="pulse-dot"></span>174 free tools · 20 AI-powered · No sign-up</p><h1 class="rise d1">Free online tools for <span class="hl">everyday tasks</span></h1><p class="hero-copy rise d2">Write, summarize, translate and create with 20 AI tools — plus compress images, generate QR codes, count words, calculate percentages and convert units. Fast and free.</p><div class="search-shell rise d3"><span class="search-icon">⌕</span><input id="hero-search" type="search" placeholder="Search 174 tools — try “AI writer”, “translate” or “QR”…" aria-label="Search all tools"><span class="search-kbd">⌘ K</span></div><div class="quick rise d4"><span class="quick-label">Popular:</span><button class="chip" data-open="ai-text-writer">AI Text Writer</button><button class="chip" data-open="ai-translator">AI Translator</button><button class="chip" data-open="image-compressor">Compress image</button><button class="chip" data-open="qr-code-generator">QR generator</button><button class="chip" data-open="word-counter">Word counter</button></div><div class="hero-stats rise d4"><div class="hstat"><strong>174</strong><span>Free tools</span></div><div class="hstat"><strong>20</strong><span>AI tools</span></div><div class="hstat"><strong>16</strong><span>Categories</span></div><div class="hstat"><strong>0</strong><span>Sign-up needed</span></div></div></div></div></section>
-<section class="section" id="tools"><div class="wrap"><div class="section-head reveal"><div><h2>All tools</h2><p class="section-intro">Pick a tool and get the job done in seconds — 128 run instantly in your browser, 10 AI text tools write, fix, translate and create for you, 10 AI image tools generate pictures, and 10 PDF tools merge, split and convert.</p></div><div class="filter-row" id="filters">${cats.map((c,i)=>`<button class="filter-btn ${i===0?'active':''}" data-filter="${c}">${c}</button>`).join('')}</div></div><div class="tool-grid" id="tool-grid">${tools.map(card).join('')}</div></div></section>
-<section class="section alt" id="home-categories"><div class="wrap"><div class="section-head"><div><h2>Browse by category</h2><p class="section-intro">Sixteen focused groups, so the right tool is always one tap away.</p></div></div><div class="category-grid">${cats.slice(1).map(c=>`<a class="category-card reveal" href="/${catSlug(c)}/"><strong>${c}</strong><span>${tools.filter(t=>t.cat===c).length} working tool${tools.filter(t=>t.cat===c).length!==1?'s':''}</span><span class="cat-arrow">Explore →</span></a>`).join('')}</div></div></section>
+const card=(t,i=0)=>`<article class="tool-card reveal" style="transition-delay:${Math.min(i*55,330)}ms" data-cat="${t.cat}" tabindex="0" role="link" data-open="${t.id}">${svgIcon(t.icon)}<h3>${t.name}</h3><p>${t.desc}</p><div class="tool-meta"><span class="category-tag">${t.cat}</span><span class="go">Free →</span></div></article>`;
+function home(){window.__toolToken=(window.__toolToken||0)+1;document.title='HecTool — 190 Free AI & Online Tools, No Sign-Up';app.innerHTML=`
+<section class="hero"><div class="wrap"><div class="hero-inner"><p class="hero-badge rise"><span class="pulse-dot"></span>190 free tools · 20 AI-powered · No sign-up</p><h1 class="rise d1">Free online tools for <span class="hl">everyday tasks</span></h1><p class="hero-copy rise d2">Write, summarize, translate and create with 20 AI tools — plus compress images, generate QR codes, count words, calculate percentages and convert units. Fast and free.</p><div class="search-shell rise d3"><span class="search-icon">⌕</span><input id="hero-search" type="search" placeholder="Search 190 tools — try “AI writer”, “translate” or “QR”…" aria-label="Search all tools"><span class="search-kbd">⌘ K</span></div><div class="quick rise d4"><span class="quick-label">Popular:</span><button class="chip" data-open="ai-text-writer">AI Text Writer</button><button class="chip" data-open="ai-translator">AI Translator</button><button class="chip" data-open="image-compressor">Compress image</button><button class="chip" data-open="qr-code-generator">QR generator</button><button class="chip" data-open="word-counter">Word counter</button><button class="chip" data-open="resume-builder">Resume builder</button><button class="chip" data-open="typing-speed-test">Typing test</button><button class="chip" data-open="sip-calculator">SIP calculator</button></div><div class="hero-stats rise d4"><div class="hstat"><strong>190</strong><span>Free tools</span></div><div class="hstat"><strong>20</strong><span>AI tools</span></div><div class="hstat"><strong>16</strong><span>Categories</span></div><div class="hstat"><strong>0</strong><span>Sign-up needed</span></div></div></div></div></section>
+<section class="section" id="tools"><div class="wrap"><div class="section-head reveal"><div><h2>All tools</h2><p class="section-intro">Pick a tool and get the job done in seconds — 159 run instantly in your browser, 10 AI text tools write, fix, translate and create for you, 10 AI image tools generate pictures, and 11 PDF tools merge, split, rotate and convert.</p></div><div class="filter-row" id="filters">${cats.map((c,i)=>`<button class="filter-btn ${i===0?'active':''}" data-filter="${c}">${c}</button>`).join('')}</div></div><div class="tool-grid" id="tool-grid">${tools.map(card).join('')}</div></div></section>
+<section class="section alt" id="home-categories"><div class="wrap"><div class="section-head"><div><h2>Browse by category</h2><p class="section-intro">Sixteen focused groups, so the right tool is always one tap away.</p></div></div><div class="category-grid">${cats.slice(1).map(c=>`<button class="category-card reveal" data-category="${c}"><strong>${c}</strong><span>${tools.filter(t=>t.cat===c).length} working tool${tools.filter(t=>t.cat===c).length!==1?'s':''}</span><span class="cat-arrow">Explore →</span></button>`).join('')}</div></div></section>
 <section class="section"><div class="wrap"><div class="section-head"><div><h2>How it works</h2><p class="section-intro">From opening a tool to downloading your result in under a minute.</p></div></div><div class="steps"><div class="step"><strong>Choose a tool</strong><span>Search or browse the grid above.</span></div><div class="step"><strong>Add your input</strong><span>Type text or drop in a file.</span></div><div class="step"><strong>Set your options</strong><span>Size, quality, format — your call.</span></div><div class="step"><strong>Run it</strong><span>Browser tools are instant; AI tools generate in seconds.</span></div><div class="step"><strong>Copy or download</strong><span>Your result is ready to use.</span></div></div></div></section>
 <section class="section alt"><div class="wrap"><div class="section-head"><div><h2>Why people use HecTool</h2><p class="section-intro">Built to be the tool site you bookmark — simple on the surface, serious underneath.</p></div></div><div class="benefits"><div class="benefit reveal"><div class="b-ic">⚡</div><h3>Instant results</h3><p>Browser tools run locally with no uploads or queues, so results appear the moment you click.</p></div><div class="benefit reveal" style="transition-delay:70ms"><div class="b-ic">✦</div><h3>Real AI, on tap</h3><p>Twenty AI tools write, rewrite, fix, translate and create — every answer comes live from the AI service, never a canned template.</p></div><div class="benefit reveal" style="transition-delay:140ms"><div class="b-ic">✓</div><h3>Completely free</h3><p>Every tool is free to use, with no account, no trial limits and no watermarks.</p></div><div class="benefit reveal" style="transition-delay:210ms"><div class="b-ic">▣</div><h3>Works everywhere</h3><p>A clean, touch-friendly layout that feels at home on phones, tablets and desktops.</p></div></div></div></section>
-<section class="section"><div class="wrap"><div class="cta-band reveal"><div><h2>Browser tools stay on your device. AI tools think for you.</h2><p>Image, text and calculator tools run 100% in your browser. When you use an AI tool, only the text you enter is sent to the AI service to generate your result — nothing is stored by this page.</p></div><button class="cta-btn" data-scroll-tools>Browse all 174 tools →</button></div></div></section>
-<section class="section alt" id="home-faq"><div class="wrap faq"><div class="section-head"><div><h2>Frequently asked questions</h2></div></div><details><summary>Are the tools really free?</summary><p>Yes. Every tool on HecTool is free to use — no account and no payment. AI tools depend on the AI service being available, so at very busy times one may ask you to try again in a little while.</p></details><details><summary>Do I need to sign up?</summary><p>No. Open any tool and start using it right away.</p></details><details><summary>Are my files uploaded anywhere?</summary><p>Image files never leave your device — those tools run locally. For AI tools, the text you type is sent to the AI service so it can generate your result; do not enter passwords or other sensitive information.</p></details><details><summary>How do the AI tools work?</summary><p>Enter your text, choose your options and press the generate button — nothing is sent before that. Your request goes over a secure connection to our AI endpoint and the real AI-generated answer is shown. If the service is unavailable, you see a simple error instead of a made-up answer.</p></details><details><summary>Which languages can the AI Translator handle?</summary><p>Urdu, English, Arabic, Hindi, French, Spanish, German and Chinese — in any direction.</p></details><details><summary>Does HecTool work on mobile?</summary><p>Yes. The layout and controls are designed for phones first, and scale up cleanly to tablets and desktops.</p></details><details><summary>Which formats do the image tools support?</summary><p>JPG, PNG and WebP — for resizing, compressing and converting between formats.</p></details></div></section>`;wireHome();const cb=$('[data-scroll-tools]');if(cb)cb.onclick=()=>$('#tools').scrollIntoView({behavior:'smooth'});}
+<section class="section"><div class="wrap"><div class="cta-band reveal"><div><h2>Browser tools stay on your device. AI tools think for you.</h2><p>Image, text and calculator tools run 100% in your browser. When you use an AI tool, only the text you enter is sent to the AI service to generate your result — nothing is stored by this page.</p></div><button class="cta-btn" data-scroll-tools>Browse all 190 tools →</button></div></div></section>
+<section class="section alt" id="home-faq"><div class="wrap faq"><div class="section-head"><div><h2>Frequently asked questions</h2></div></div><details><summary>Are the tools really free?</summary><p>Yes. Every tool on HecTool is free to use — no account and no payment. AI tools depend on the AI service being available, so at very busy times one may ask you to try again in a little while.</p></details><details><summary>Do I need to sign up?</summary><p>No. Open any tool and start using it right away.</p></details><details><summary>Are my files uploaded anywhere?</summary><p>Image files never leave your device — those tools run locally. For AI tools, the text you type is sent to the AI service so it can generate your result; do not enter passwords or other sensitive information.</p></details><details><summary>How do the AI tools work?</summary><p>Enter your text, choose your options and press the generate button — nothing is sent before that. Your request goes over a secure connection to our AI endpoint and the real AI-generated answer is shown. If the service is unavailable, you see a simple error instead of a made-up answer.</p></details><details><summary>Which languages can the AI Translator handle?</summary><p>Urdu, English, Arabic, Hindi, French, Spanish, German and Chinese — in any direction.</p></details><details><summary>Does HecTool work on mobile?</summary><p>Yes. The layout and controls are designed for phones first, and scale up cleanly to tablets and desktops.</p></details><details><summary>Which formats do the image tools support?</summary><p>JPG, PNG and WebP — for resizing, compressing and converting between formats.</p></details><details><summary>Do the finance calculators give financial advice?</summary><p>No. The calculators show arithmetic estimates from the numbers you enter. They are general utilities, not financial advice — check important decisions with a qualified professional.</p></details></div></section>`;wireHome();const cb=$('[data-scroll-tools]');if(cb)cb.onclick=()=>$('#tools').scrollIntoView({behavior:'smooth'});}
 function observeReveals(){const els=$$('.reveal:not(.in)');if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return}const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.1,rootMargin:'0px 0px -6% 0px'});els.forEach(e=>io.observe(e));setTimeout(()=>els.forEach(e=>e.classList.add('in')),2600)}
 function wireHome(){let active='All';const search=$('#hero-search');function render(){const q=search.value.trim().toLowerCase();const found=tools.filter(t=>(active==='All'||t.cat===active)&&(!q||`${t.name} ${t.desc} ${t.keys} ${t.cat}`.toLowerCase().includes(q)));$('#tool-grid').innerHTML=found.length?found.map((t,i)=>card(t,i)).join(''):`<div class="empty-search"><strong>No matching tool found.</strong><br>Try a simpler search such as “image”, “text” or “calculate”.</div>`;wireOpen();observeReveals();if(q)$('#tools').scrollIntoView({behavior:'smooth',block:'start'});}search.addEventListener('input',render);$$('[data-filter]').forEach(b=>b.onclick=()=>{active=b.dataset.filter;$$('[data-filter]').forEach(x=>x.classList.toggle('active',x===b));render()});wireOpen();observeReveals();}
 function toolShell(t,body,how='Enter your information, choose any available options, then run the tool. Your data stays in this browser.',related=[]){t.querySelector=function(s){return app.querySelector(s)};t.querySelectorAll=function(s){return app.querySelectorAll(s)};t.getElementById=function(id){return app.querySelector('#'+id)};t.appendChild=function(el){return app.appendChild(el)};t.addEventListener=function(){return app.addEventListener.apply(app,arguments)};document.title=`${t.name} — HecTool`;app.innerHTML=`<article class="tool-page"><div class="wrap"><div class="breadcrumb"><a href="#home">Home</a><span>›</span><a href="#tools">Tools</a><span>›</span><span>${t.name}</span></div><h2 class="tool-page-title">${t.name}</h2><p class="tool-lead">${t.desc}</p><div class="tool-layout"><section class="tool-box">${body}</section><aside class="tool-side"><section class="side-box"><h3>How to use</h3><p>${how}</p></section><section class="side-box"><h3>Related tools</h3><div class="related">${related.map(id=>{const x=tools.find(t=>t.id===id);return `<button data-open="${id}">${x.name} →</button>`}).join('')}</div></section></aside></div></div></article>`;wireOpen();}
@@ -319,16 +334,32 @@ function renderTool(id){window.__toolToken=(window.__toolToken||0)+1;const t=too
 'profit-calculator':profitCalc,
 'break-even-calculator':breakEvenCalc,
 'meeting-cost-calculator':meetingCostCalc,
-'receipt-generator':receiptGen,'barcode-generator':barcodeTool,'pdf-organizer':pdfOrganizer,'speech-to-text':speechToTextTool,'json-to-csv-converter':jsonCsvTool,'csv-to-json-converter':csvJsonTool,'markdown-editor':markdownEditorTool,'html-to-markdown-converter':htmlMarkdownTool,'image-watermark-adder':imageWatermarkTool,'aspect-ratio-calculator':aspectRatioCalc,'password-strength-checker':passwordStrengthTool,'text-encryptor':textEncryptorTool,'online-notepad':onlineNotepadTool,'css-box-shadow-generator':boxShadowTool,'url-slug-generator':slugGeneratorTool,'meta-tag-generator':metaTagTool,'robots-txt-generator':robotsTxtTool,};map[id](t);window.scrollTo(0,0)}
+'receipt-generator':receiptGen,'barcode-generator':barcodeTool,'pdf-organizer':pdfOrganizer,'speech-to-text':speechToTextTool,'json-to-csv-converter':jsonCsvTool,'csv-to-json-converter':csvJsonTool,'markdown-editor':markdownEditorTool,'html-to-markdown-converter':htmlMarkdownTool,'image-watermark-adder':imageWatermarkTool,'aspect-ratio-calculator':aspectRatioCalc,'password-strength-checker':passwordStrengthTool,'text-encryptor':textEncryptorTool,'online-notepad':onlineNotepadTool,'css-box-shadow-generator':boxShadowTool,'url-slug-generator':slugGeneratorTool,'meta-tag-generator':metaTagTool,'robots-txt-generator':robotsTxtTool,
+'resume-builder':resumeBuilder,
+'sip-calculator':sipCalc,
+'zakat-calculator':zakatCalc,
+'gst-calculator':gstCalc,
+'typing-speed-test':typingTest,
+'passport-photo-resizer':passportPhotoTool,
+'click-speed-test':clickSpeedTest,
+'reaction-time-test':reactionTest,
+'what-is-my-ip':ipTool,
+'urdu-keyboard':urduKeyboard,
+'roman-urdu-to-urdu-converter':romanUrduConverter,
+'screen-recorder':screenRecorder,
+'youtube-thumbnail-maker':thumbnailMaker,
+'matrix-calculator':matrixCalc,
+'iban-validator':ibanValidator,
+'xml-sitemap-generator':sitemapGen,};map[id](t);window.scrollTo(0,0)}
 function wordCounter(t){toolShell(t,`<div class="field"><label class="label" for="word-input">Your text</label><textarea class="textarea" id="word-input" placeholder="Start typing or paste text here…"></textarea></div><div class="metric-grid" id="word-metrics">${['Words','Characters','No spaces','Sentences','Paragraphs','Reading time'].map(x=>metric(x,0)).join('')}</div><div class="actions"><button class="btn primary" id="copy-text">Copy text</button><button class="btn secondary" id="clear-text">Clear</button></div>`,`Type or paste text. Counts update instantly; reading time uses an average of 200 words per minute.`,['case-converter','text-diff']);const i=$('#word-input');function run(){const s=i.value,trim=s.trim(),words=trim?trim.split(/\s+/).length:0,sent=trim?(trim.match(/[^.!?]+[.!?]+|[^.!?]+$/g)||[]).filter(x=>x.trim()).length:0,paras=trim?trim.split(/\n\s*\n/).filter(Boolean).length:0,vals=[words,s.length,s.replace(/\s/g,'').length,sent,paras,words?Math.max(1,Math.ceil(words/200))+' min':'0 min'];$$('.metric strong').forEach((e,n)=>e.textContent=vals[n])}i.oninput=run;$('#copy-text').onclick=()=>copy(i.value);$('#clear-text').onclick=()=>{i.value='';run();i.focus()};}
 function percentageCalc(t){toolShell(t,`<div class="field"><label class="label" for="pct-mode">Calculation</label><select class="select" id="pct-mode"><option value="of">X% of Y</option><option value="what">X is what % of Y</option><option value="change">Percentage increase or decrease</option></select></div><div class="row"><div class="field"><label class="label" id="lab-a" for="pct-a">Percentage (X)</label><input class="input" id="pct-a" type="number" inputmode="decimal" placeholder="e.g. 15"></div><div class="field"><label class="label" id="lab-b" for="pct-b">Value (Y)</label><input class="input" id="pct-b" type="number" inputmode="decimal" placeholder="e.g. 200"></div></div><div id="pct-error"></div><div class="actions"><button class="btn primary" id="pct-run">Calculate</button><button class="btn secondary" id="pct-clear">Reset</button></div><div class="result" id="pct-result" hidden><h3>Result</h3><div class="result-big" id="pct-value"></div><p id="pct-formula"></p></div>`,`Select a percentage mode, enter both values and choose Calculate. Zero denominators are rejected.`,['age-calculator','unit-converter']);const mode=$('#pct-mode'),a=$('#pct-a'),b=$('#pct-b');function labels(){const v=mode.value;$('#lab-a').textContent=v==='of'?'Percentage (X)':v==='what'?'Part value (X)':'Original value';$('#lab-b').textContent=v==='of'?'Value (Y)':v==='what'?'Total value (Y)':'New value'}mode.onchange=labels;$('#pct-run').onclick=()=>{const x=parseFloat(a.value),y=parseFloat(b.value),err=$('#pct-error');err.innerHTML='';if(!Number.isFinite(x)||!Number.isFinite(y)){err.innerHTML='<div class="error">Enter both values to calculate.</div>';return}let r,f;if(mode.value==='of'){r=x/100*y;f=`${x}% × ${y} = ${fmt(r)}`}else if(mode.value==='what'){if(y===0){err.innerHTML='<div class="error">The total value cannot be zero.</div>';return}r=x/y*100;f=`(${x} ÷ ${y}) × 100 = ${fmt(r)}%`}else{if(x===0){err.innerHTML='<div class="error">The original value cannot be zero.</div>';return}r=(y-x)/Math.abs(x)*100;f=`((${y} − ${x}) ÷ |${x}|) × 100`;r=(r>=0?'+':'')+fmt(r)+'%'}$('#pct-value').textContent=mode.value==='of'?fmt(r):mode.value==='what'?fmt(r)+'%':r;$('#pct-formula').textContent=f;$('#pct-result').hidden=false};$('#pct-clear').onclick=()=>{a.value=b.value='';$('#pct-result').hidden=true;$('#pct-error').innerHTML=''};}
 function ageCalc(t){toolShell(t,`<div class="row"><div class="field"><label class="label" for="birthdate">Date of birth</label><input class="input" id="birthdate" type="date"></div><div class="field"><label class="label" for="age-asof">Calculate age on</label><input class="input" id="age-asof" type="date"></div></div><div id="age-error"></div><div class="actions"><button class="btn primary" id="age-run">Calculate age</button><button class="btn secondary" id="age-clear">Reset</button></div><div class="result" id="age-result" hidden><h3>Exact age</h3><div class="result-big" id="age-exact"></div><div class="metric-grid" style="margin-top:16px"><div class="metric"><strong id="age-days"></strong><span>Total days</span></div><div class="metric"><strong id="age-months"></strong><span>Completed months</span></div><div class="metric"><strong id="age-weekday"></strong><span>Born on</span></div><div class="metric"><strong id="next-days"></strong><span>Days to next birthday</span></div></div></div>`,`Select a birth date and the date you want to calculate from. Results use calendar years and months.`,['percentage-calculator','unit-converter']);const today=new Date(),asof=$('#age-asof');asof.value=localISO(today);$('#birthdate').max=localISO(today);$('#age-run').onclick=()=>{const bs=$('#birthdate').value,ts=asof.value,err=$('#age-error');err.innerHTML='';if(!bs||!ts){err.innerHTML='<div class="error">Select both dates.</div>';return}let b=parseDate(bs),d=parseDate(ts);if(b>d){err.innerHTML='<div class="error">Birth date must be on or before the calculation date.</div>';return}let y=d.getFullYear()-b.getFullYear(),m=d.getMonth()-b.getMonth(),day=d.getDate()-b.getDate();if(day<0){m--;const prev=new Date(d.getFullYear(),d.getMonth(),0).getDate();day+=prev}if(m<0){y--;m+=12}const totalDays=Math.floor((utcDay(d)-utcDay(b))/86400000),months=y*12+m;let next=new Date(d.getFullYear(),b.getMonth(),b.getDate());if(next<d||sameDay(next,d))next=new Date(d.getFullYear()+1,b.getMonth(),b.getDate());const nextDays=Math.ceil((utcDay(next)-utcDay(d))/86400000);$('#age-exact').textContent=`${y} years, ${m} months, ${day} days`;$('#age-days').textContent=totalDays.toLocaleString();$('#age-months').textContent=months.toLocaleString();$('#age-weekday').textContent=b.toLocaleDateString('en',{weekday:'long'});$('#next-days').textContent=nextDays;$('#age-result').hidden=false};$('#age-clear').onclick=()=>{$('#birthdate').value='';asof.value=localISO(today);$('#age-result').hidden=true;$('#age-error').innerHTML=''};}
 function qrTool(t){toolShell(t,`<div class="field"><label class="label" for="qr-text">Text or URL</label><textarea class="textarea" id="qr-text" style="min-height:110px" placeholder="https://example.com or any text"></textarea></div><div class="field"><label class="label" for="qr-size">QR size</label><select class="select" id="qr-size"><option value="192">192 × 192</option><option value="256" selected>256 × 256</option><option value="384">384 × 384</option><option value="512">512 × 512</option></select></div><div id="qr-error"></div><div class="actions"><button class="btn primary" id="qr-run">Generate QR code</button><button class="btn secondary" id="qr-download" disabled>Download PNG</button><button class="btn secondary" id="qr-clear">Reset</button></div><div id="qr-output" hidden></div>`,`Enter a URL or text, choose a size, then generate. Test important QR codes with your camera before publishing.`,['image-converter','text-diff']);let ready=false;$('#qr-run').onclick=()=>{const text=$('#qr-text').value.trim(),out=$('#qr-output'),err=$('#qr-error');err.innerHTML='';out.innerHTML='';if(!text){err.innerHTML='<div class="error">Enter text or a URL to encode.</div>';return}if(typeof QRCode==='undefined'){err.innerHTML='<div class="error">The QR library could not load. Check your connection and try again.</div>';return}const s=+$ ('#qr-size').value;new QRCode(out,{text,width:s,height:s,colorDark:'#000000',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});out.hidden=false;ready=true;$('#qr-download').disabled=false};$('#qr-download').onclick=()=>{if(!ready)return;const c=$('#qr-output canvas'),im=$('#qr-output img');const href=c?c.toDataURL('image/png'):im.src;download(href,'hectool-qr-code.png')};$('#qr-clear').onclick=()=>{$('#qr-text').value='';$('#qr-output').innerHTML='';$('#qr-output').hidden=true;$('#qr-download').disabled=true;ready=false};}
 function uploadUI(id,title){return `<label class="dropzone" id="drop-${id}" for="file-${id}"><input id="file-${id}" type="file" accept="image/jpeg,image/png,image/webp"><strong>${title}</strong><br><span style="color:var(--muted);font-size:14px">JPG, PNG or WebP · maximum 20 MB</span></label><div id="err-${id}"></div>`}
 function bindImageUpload(id,onload){const input=$('#file-'+id),drop=$('#drop-'+id);['dragenter','dragover'].forEach(e=>drop.addEventListener(e,x=>{x.preventDefault();drop.classList.add('drag')}));['dragleave','drop'].forEach(e=>drop.addEventListener(e,x=>{x.preventDefault();drop.classList.remove('drag')}));drop.addEventListener('drop',e=>{if(e.dataTransfer.files[0])load(e.dataTransfer.files[0])});input.onchange=()=>input.files[0]&&load(input.files[0]);function load(f){const err=$('#err-'+id);err.innerHTML='';if(!/^image\/(jpeg|png|webp)$/.test(f.type)){err.innerHTML='<div class="error">Choose a JPG, PNG or WebP image.</div>';return}if(f.size>20*1024*1024){err.innerHTML='<div class="error">This file is over the 20 MB limit.</div>';return}const url=URL.createObjectURL(f),img=new Image();img.onload=()=>{onload({file:f,img,url});};img.onerror=()=>{URL.revokeObjectURL(url);err.innerHTML='<div class="error">This image could not be read.</div>'};img.src=url}}
-function imageResizer(t){toolShell(t,`${uploadUI('resize','Drop an image here or choose a file')}<div id="resize-work" hidden><img loading="lazy" decoding="async" class="preview" id="resize-preview" alt="Image preview"><div class="file-meta" id="resize-meta"></div><div class="row" style="margin-top:18px"><div class="field"><label class="label" for="resize-w">Width (px)</label><input class="input" id="resize-w" type="number" min="1" max="10000"></div><div class="field"><label class="label" for="resize-h">Height (px)</label><input class="input" id="resize-h" type="number" min="1" max="10000"></div></div><label class="switch-row"><input type="checkbox" id="resize-lock" checked> Lock aspect ratio</label><div class="actions"><button class="btn primary" id="resize-run">Resize image</button><button class="btn secondary" id="resize-download" disabled>Download</button><button class="btn secondary" id="resize-reset">Reset</button></div><div class="loading" id="resize-loading"><span class="spinner"></span> Resizing image…</div><div class="result" id="resize-result" hidden></div></div>`,`Select an image, set the target width and height, then resize and download. Large dimensions can use significant device memory.`,['image-compressor','image-converter']);let state=null,last=null,ratio=1;bindImageUpload('resize',x=>{state=x;ratio=x.img.width/x.img.height;$('#resize-preview').src=x.url;$('#resize-w').value=x.img.width;$('#resize-h').value=x.img.height;$('#resize-meta').textContent=`${x.file.name} · ${x.img.width} × ${x.img.height} · ${bytes(x.file.size)}`;$('#resize-work').hidden=false;$('#resize-result').hidden=true;$('#resize-download').disabled=true});$('#resize-w').oninput=e=>{if($('#resize-lock').checked&&state)$('#resize-h').value=Math.round(+e.target.value/ratio)};$('#resize-h').oninput=e=>{if($('#resize-lock').checked&&state)$('#resize-w').value=Math.round(+e.target.value*ratio)};$('#resize-run').onclick=()=>{if(!state)return;const w=+$('#resize-w').value,h=+$('#resize-h').value;if(!w||!h||w>10000||h>10000){$('#err-resize').innerHTML='<div class="error">Use dimensions between 1 and 10,000 pixels.</div>';return}$('#resize-loading').classList.add('show');setTimeout(()=>{const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(state.img,0,0,w,h);c.toBlob(b=>{last=URL.createObjectURL(b);$('#resize-result').innerHTML=`<h3>Resize complete</h3><p><strong>${w} × ${h}</strong> · ${bytes(b.size)}</p>`;$('#resize-result').hidden=false;$('#resize-download').disabled=false;$('#resize-loading').classList.remove('show')},state.file.type==='image/png'?'image/png':'image/jpeg',.92)},20)};$('#resize-download').onclick=()=>last&&download(last,'resized-'+safeName(state.file.name,'.jpg'));$('#resize-reset').onclick=()=>location.reload();}
-function imageCompressor(t){toolShell(t,`${uploadUI('compress','Drop an image here or choose a file')}<div id="compress-work" hidden><img loading="lazy" decoding="async" class="preview" id="compress-preview" alt="Image preview"><div class="file-meta" id="compress-meta"></div><div class="field" style="margin-top:18px"><label class="label" for="quality">Output quality: <span id="quality-val">80%</span></label><input class="range" id="quality" type="range" min="20" max="95" value="80"></div><div class="actions"><button class="btn primary" id="compress-run">Compress image</button><button class="btn secondary" id="compress-download" disabled>Download</button><button class="btn secondary" id="compress-reset">Reset</button></div><div class="loading" id="compress-loading"><span class="spinner"></span> Compressing image…</div><div class="result" id="compress-result" hidden></div></div>`,`Choose a JPG, PNG or WebP image and set the quality. Output uses WebP for efficient compression and broad browser support.`,['image-resizer','image-converter']);let state,last;bindImageUpload('compress',x=>{state=x;$('#compress-preview').src=x.url;$('#compress-meta').textContent=`${x.file.name} · ${x.img.width} × ${x.img.height} · ${bytes(x.file.size)}`;$('#compress-work').hidden=false});$('#quality').oninput=e=>$('#quality-val').textContent=e.target.value+'%';$('#compress-run').onclick=()=>{if(!state)return;$('#compress-loading').classList.add('show');setTimeout(()=>{const c=document.createElement('canvas');c.width=state.img.width;c.height=state.img.height;c.getContext('2d').drawImage(state.img,0,0);c.toBlob(b=>{last=URL.createObjectURL(b);const save=Math.max(0,(1-b.size/state.file.size)*100);$('#compress-result').innerHTML=`<h3>Compression complete</h3><div class="metric-grid">${metric('Before',bytes(state.file.size))}${metric('After',bytes(b.size))}${metric('Saved',fmt(save)+'%')}</div>`;$('#compress-result').hidden=false;$('#compress-download').disabled=false;$('#compress-loading').classList.remove('show')},'image/webp',+$('#quality').value/100)},20)};$('#compress-download').onclick=()=>last&&download(last,'compressed-'+safeName(state.file.name,'.webp'));$('#compress-reset').onclick=()=>location.reload();}
-function imageConverter(t){toolShell(t,`${uploadUI('convert','Drop an image here or choose a file')}<div id="convert-work" hidden><img loading="lazy" decoding="async" class="preview" id="convert-preview" alt="Image preview"><div class="file-meta" id="convert-meta"></div><div class="field" style="margin-top:18px"><label class="label" for="convert-format">Convert to</label><select class="select" id="convert-format"><option value="image/jpeg">JPG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select></div><div class="actions"><button class="btn primary" id="convert-run">Convert image</button><button class="btn secondary" id="convert-download" disabled>Download</button><button class="btn secondary" id="convert-reset">Reset</button></div><div class="loading" id="convert-loading"><span class="spinner"></span> Converting image…</div><div class="result" id="convert-result" hidden></div></div>`,`Choose an image and an output format. Transparent pixels become white when converting to JPG.`,['image-resizer','image-compressor']);let state,last,ext='jpg';bindImageUpload('convert',x=>{state=x;$('#convert-preview').src=x.url;$('#convert-meta').textContent=`${x.file.name} · ${x.img.width} × ${x.img.height} · ${bytes(x.file.size)}`;$('#convert-work').hidden=false});$('#convert-run').onclick=()=>{if(!state)return;const type=$('#convert-format').value;ext=type.split('/')[1].replace('jpeg','jpg');$('#convert-loading').classList.add('show');setTimeout(()=>{const c=document.createElement('canvas');c.width=state.img.width;c.height=state.img.height;const ctx=c.getContext('2d');if(type==='image/jpeg'){ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height)}ctx.drawImage(state.img,0,0);c.toBlob(b=>{last=URL.createObjectURL(b);$('#convert-result').innerHTML=`<h3>Conversion complete</h3><p>${ext.toUpperCase()} · ${bytes(b.size)} · ${c.width} × ${c.height}</p>`;$('#convert-result').hidden=false;$('#convert-download').disabled=false;$('#convert-loading').classList.remove('show')},type,.92)},20)};$('#convert-download').onclick=()=>last&&download(last,'converted-'+safeName(state.file.name,'.'+ext));$('#convert-reset').onclick=()=>location.reload();}
+function imageResizer(t){toolShell(t,`${uploadUI('resize','Drop an image here or choose a file')}<div id="resize-work" hidden><img class="preview" id="resize-preview" alt="Image preview"><div class="file-meta" id="resize-meta"></div><div class="row" style="margin-top:18px"><div class="field"><label class="label" for="resize-w">Width (px)</label><input class="input" id="resize-w" type="number" min="1" max="10000"></div><div class="field"><label class="label" for="resize-h">Height (px)</label><input class="input" id="resize-h" type="number" min="1" max="10000"></div></div><label class="switch-row"><input type="checkbox" id="resize-lock" checked> Lock aspect ratio</label><div class="actions"><button class="btn primary" id="resize-run">Resize image</button><button class="btn secondary" id="resize-download" disabled>Download</button><button class="btn secondary" id="resize-reset">Reset</button></div><div class="loading" id="resize-loading"><span class="spinner"></span> Resizing image…</div><div class="result" id="resize-result" hidden></div></div>`,`Select an image, set the target width and height, then resize and download. Large dimensions can use significant device memory.`,['image-compressor','image-converter']);let state=null,last=null,ratio=1;bindImageUpload('resize',x=>{state=x;ratio=x.img.width/x.img.height;$('#resize-preview').src=x.url;$('#resize-w').value=x.img.width;$('#resize-h').value=x.img.height;$('#resize-meta').textContent=`${x.file.name} · ${x.img.width} × ${x.img.height} · ${bytes(x.file.size)}`;$('#resize-work').hidden=false;$('#resize-result').hidden=true;$('#resize-download').disabled=true});$('#resize-w').oninput=e=>{if($('#resize-lock').checked&&state)$('#resize-h').value=Math.round(+e.target.value/ratio)};$('#resize-h').oninput=e=>{if($('#resize-lock').checked&&state)$('#resize-w').value=Math.round(+e.target.value*ratio)};$('#resize-run').onclick=()=>{if(!state)return;const w=+$('#resize-w').value,h=+$('#resize-h').value;if(!w||!h||w>10000||h>10000){$('#err-resize').innerHTML='<div class="error">Use dimensions between 1 and 10,000 pixels.</div>';return}$('#resize-loading').classList.add('show');setTimeout(()=>{const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(state.img,0,0,w,h);c.toBlob(b=>{last=URL.createObjectURL(b);$('#resize-result').innerHTML=`<h3>Resize complete</h3><p><strong>${w} × ${h}</strong> · ${bytes(b.size)}</p>`;$('#resize-result').hidden=false;$('#resize-download').disabled=false;$('#resize-loading').classList.remove('show')},state.file.type==='image/png'?'image/png':'image/jpeg',.92)},20)};$('#resize-download').onclick=()=>last&&download(last,'resized-'+safeName(state.file.name,'.jpg'));$('#resize-reset').onclick=()=>location.reload();}
+function imageCompressor(t){toolShell(t,`${uploadUI('compress','Drop an image here or choose a file')}<div id="compress-work" hidden><img class="preview" id="compress-preview" alt="Image preview"><div class="file-meta" id="compress-meta"></div><div class="field" style="margin-top:18px"><label class="label" for="quality">Output quality: <span id="quality-val">80%</span></label><input class="range" id="quality" type="range" min="20" max="95" value="80"></div><div class="actions"><button class="btn primary" id="compress-run">Compress image</button><button class="btn secondary" id="compress-download" disabled>Download</button><button class="btn secondary" id="compress-reset">Reset</button></div><div class="loading" id="compress-loading"><span class="spinner"></span> Compressing image…</div><div class="result" id="compress-result" hidden></div></div>`,`Choose a JPG, PNG or WebP image and set the quality. Output uses WebP for efficient compression and broad browser support.`,['image-resizer','image-converter']);let state,last;bindImageUpload('compress',x=>{state=x;$('#compress-preview').src=x.url;$('#compress-meta').textContent=`${x.file.name} · ${x.img.width} × ${x.img.height} · ${bytes(x.file.size)}`;$('#compress-work').hidden=false});$('#quality').oninput=e=>$('#quality-val').textContent=e.target.value+'%';$('#compress-run').onclick=()=>{if(!state)return;$('#compress-loading').classList.add('show');setTimeout(()=>{const c=document.createElement('canvas');c.width=state.img.width;c.height=state.img.height;c.getContext('2d').drawImage(state.img,0,0);c.toBlob(b=>{last=URL.createObjectURL(b);const save=Math.max(0,(1-b.size/state.file.size)*100);$('#compress-result').innerHTML=`<h3>Compression complete</h3><div class="metric-grid">${metric('Before',bytes(state.file.size))}${metric('After',bytes(b.size))}${metric('Saved',fmt(save)+'%')}</div>`;$('#compress-result').hidden=false;$('#compress-download').disabled=false;$('#compress-loading').classList.remove('show')},'image/webp',+$('#quality').value/100)},20)};$('#compress-download').onclick=()=>last&&download(last,'compressed-'+safeName(state.file.name,'.webp'));$('#compress-reset').onclick=()=>location.reload();}
+function imageConverter(t){toolShell(t,`${uploadUI('convert','Drop an image here or choose a file')}<div id="convert-work" hidden><img class="preview" id="convert-preview" alt="Image preview"><div class="file-meta" id="convert-meta"></div><div class="field" style="margin-top:18px"><label class="label" for="convert-format">Convert to</label><select class="select" id="convert-format"><option value="image/jpeg">JPG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select></div><div class="actions"><button class="btn primary" id="convert-run">Convert image</button><button class="btn secondary" id="convert-download" disabled>Download</button><button class="btn secondary" id="convert-reset">Reset</button></div><div class="loading" id="convert-loading"><span class="spinner"></span> Converting image…</div><div class="result" id="convert-result" hidden></div></div>`,`Choose an image and an output format. Transparent pixels become white when converting to JPG.`,['image-resizer','image-compressor']);let state,last,ext='jpg';bindImageUpload('convert',x=>{state=x;$('#convert-preview').src=x.url;$('#convert-meta').textContent=`${x.file.name} · ${x.img.width} × ${x.img.height} · ${bytes(x.file.size)}`;$('#convert-work').hidden=false});$('#convert-run').onclick=()=>{if(!state)return;const type=$('#convert-format').value;ext=type.split('/')[1].replace('jpeg','jpg');$('#convert-loading').classList.add('show');setTimeout(()=>{const c=document.createElement('canvas');c.width=state.img.width;c.height=state.img.height;const ctx=c.getContext('2d');if(type==='image/jpeg'){ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height)}ctx.drawImage(state.img,0,0);c.toBlob(b=>{last=URL.createObjectURL(b);$('#convert-result').innerHTML=`<h3>Conversion complete</h3><p>${ext.toUpperCase()} · ${bytes(b.size)} · ${c.width} × ${c.height}</p>`;$('#convert-result').hidden=false;$('#convert-download').disabled=false;$('#convert-loading').classList.remove('show')},type,.92)},20)};$('#convert-download').onclick=()=>last&&download(last,'converted-'+safeName(state.file.name,'.'+ext));$('#convert-reset').onclick=()=>location.reload();}
 function caseConverter(t){toolShell(t,`<div class="field"><label class="label" for="case-input">Your text</label><textarea class="textarea" id="case-input" placeholder="Type or paste text here…"></textarea></div><div class="filter-row" id="case-buttons"><button class="filter-btn active" data-case="upper">UPPERCASE</button><button class="filter-btn" data-case="lower">lowercase</button><button class="filter-btn" data-case="title">Title Case</button><button class="filter-btn" data-case="sentence">Sentence case</button><button class="filter-btn" data-case="camel">camelCase</button><button class="filter-btn" data-case="snake">snake_case</button></div><div class="result"><h3>Converted text</h3><textarea class="textarea" id="case-output" readonly placeholder="Your converted text appears here"></textarea><div class="file-meta" id="case-count"></div></div><div class="actions"><button class="btn primary" id="case-copy">Copy result</button><button class="btn secondary" id="case-clear">Clear</button></div>`,`Enter text and choose a case style. Conversion updates live as you type.`,['word-counter','text-diff']);let type='upper',inp=$('#case-input'),out=$('#case-output');function words(s){return s.trim()?s.trim().split(/\s+/):[]}function convert(){const s=inp.value,w=words(s);if(type==='upper')out.value=s.toUpperCase();if(type==='lower')out.value=s.toLowerCase();if(type==='title')out.value=s.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());if(type==='sentence')out.value=s.toLowerCase().replace(/(^\s*\w|[.!?]\s+\w)/g,c=>c.toUpperCase());if(type==='camel')out.value=w.map((x,i)=>{x=x.replace(/[^a-zA-Z0-9]/g,'').toLowerCase();return i?x.charAt(0).toUpperCase()+x.slice(1):x}).join('');if(type==='snake')out.value=w.join('_').replace(/[^a-zA-Z0-9_]/g,'').toLowerCase();$('#case-count').textContent=`${w.length} words · ${out.value.length} characters`}inp.oninput=convert;$$('[data-case]').forEach(b=>b.onclick=()=>{type=b.dataset.case;$$('[data-case]').forEach(x=>x.classList.toggle('active',x===b));convert()});$('#case-copy').onclick=()=>copy(out.value);$('#case-clear').onclick=()=>{inp.value='';convert();inp.focus()};convert();}
 const units={length:{m:1,km:1000,cm:.01,mm:.001,mi:1609.344,yd:.9144,ft:.3048,in:.0254},weight:{kg:1,g:.001,mg:.000001,lb:.45359237,oz:.028349523125,t:1000},area:{'m²':1,'km²':1e6,'ft²':.09290304,'yd²':.83612736,acre:4046.8564224,hectare:10000},volume:{L:1,mL:.001,'m³':1000,'ft³':28.316846592,gal:3.785411784,cup:.2365882365},speed:{'m/s':1,'km/h':1/3.6,mph:.44704,knot:.514444},time:{second:1,minute:60,hour:3600,day:86400,week:604800},data:{B:1,KB:1024,MB:1048576,GB:1073741824,TB:1099511627776}};
 function unitConverter(t){toolShell(t,`<div class="field"><label class="label" for="unit-cat">Category</label><select class="select" id="unit-cat"><option value="length">Length</option><option value="weight">Weight</option><option value="temperature">Temperature</option><option value="area">Area</option><option value="volume">Volume</option><option value="speed">Speed</option><option value="time">Time</option><option value="data">Data</option></select></div><div class="row"><div><div class="field"><label class="label" for="unit-val">Value</label><input class="input" id="unit-val" type="number" inputmode="decimal" value="1"></div><select class="select" id="unit-from"></select></div><div><div class="field"><label class="label" for="unit-out">Converted value</label><input class="input" id="unit-out" readonly></div><select class="select" id="unit-to"></select></div></div><div class="actions"><button class="btn primary" id="unit-run">Convert</button><button class="btn secondary" id="unit-swap">Swap units</button><button class="btn secondary" id="unit-clear">Reset</button></div><div id="unit-error"></div>`,`Choose a measurement category, units and value. Data units use binary multiples (1 KB = 1,024 bytes).`,['percentage-calculator','age-calculator']);const cat=$('#unit-cat'),from=$('#unit-from'),to=$('#unit-to'),val=$('#unit-val'),out=$('#unit-out');function fill(){const arr=cat.value==='temperature'?['°C','°F','K']:Object.keys(units[cat.value]);from.innerHTML=arr.map(x=>`<option>${x}</option>`).join('');to.innerHTML=arr.map((x,i)=>`<option ${i===1?'selected':''}>${x}</option>`).join('');run()}function temp(v,a,b){let c=a==='°C'?v:a==='°F'?(v-32)*5/9:v-273.15;return b==='°C'?c:b==='°F'?c*9/5+32:c+273.15}function run(){const v=parseFloat(val.value);if(!Number.isFinite(v)){out.value='';$('#unit-error').innerHTML='<div class="error">Enter a valid number.</div>';return}$('#unit-error').innerHTML='';const r=cat.value==='temperature'?temp(v,from.value,to.value):v*units[cat.value][from.value]/units[cat.value][to.value];out.value=fmt(r)}cat.onchange=fill;val.oninput=run;from.onchange=run;to.onchange=run;$('#unit-run').onclick=run;$('#unit-swap').onclick=()=>{const x=from.value;from.value=to.value;to.value=x;run()};$('#unit-clear').onclick=()=>{cat.value='length';val.value=1;fill()};fill();}
@@ -347,7 +378,7 @@ function aiGrammar(t){toolShell(t,aiBody('aig',`<div class="field"><label class=
 function aiProduct(t){toolShell(t,aiBody('aipro',`<div class="field"><label class="label" for="aipro-name">Product name</label><input class="input" id="aipro-name" placeholder="e.g. Aurora Wireless Noise-Cancelling Headphones"></div><div class="field"><label class="label" for="aipro-features">Key features &amp; details</label><textarea class="textarea" id="aipro-features" style="min-height:140px" placeholder="e.g. 40-hour battery, Bluetooth 5.3, foldable design, built-in mic, 1-year warranty, available in black and blue"></textarea></div><div class="row"><div class="field"><label class="label" for="aipro-tone">Tone</label><select class="select" id="aipro-tone"><option value="persuasive">Persuasive — sells the benefits</option><option value="professional">Professional</option><option value="fun">Fun &amp; friendly</option><option value="luxury">Luxury / premium</option></select></div><div class="field"><label class="label" for="aipro-length">Length</label><select class="select" id="aipro-length"><option value="short">Short (~80 words)</option><option value="medium" selected>Medium (~150 words)</option><option value="long">Long (~250 words)</option></select></div></div>`,'Generate description','Your AI product description'),`Enter the exact product name, list its real features, then generate. Only describe features your product actually has — check the result before using it in your store.`,['ai-text-writer','ai-caption-generator','ai-hashtag-generator']);bindAI({prefix:'aipro',task:'product',filename:'hectool-ai-product-description.txt',emptyMsg:'Enter a product name first.',clearIds:['aipro-name','aipro-features'],validate:()=>{if(!$('#aipro-name').value.trim())return 'Enter a product name first.';if(!$('#aipro-features').value.trim())return 'Add the product features so the description is accurate.';return null},getInput:()=>{const n=$('#aipro-name').value.trim(),f=$('#aipro-features').value.trim();return 'Product: '+n+'\n\nFeatures:\n'+f},getOptions:()=>({productName:$('#aipro-name').value.trim(),tone:$('#aipro-tone').value,length:$('#aipro-length').value})});}
 function aiHashtag(t){toolShell(t,aiBody('aih',`<div class="field"><label class="label" for="aih-input">Topic, niche or post description</label><textarea class="textarea" id="aih-input" style="min-height:110px" placeholder="e.g. Home workout routines for beginners, no equipment"></textarea></div><div class="row"><div class="field"><label class="label" for="aih-platform">Platform</label><select class="select" id="aih-platform"><option value="Instagram">Instagram</option><option value="TikTok">TikTok</option><option value="both">Instagram + TikTok</option></select></div><div class="field"><label class="label" for="aih-count">How many hashtags</label><select class="select" id="aih-count"><option value="15">15 hashtags</option><option value="20" selected>20 hashtags</option><option value="30">30 hashtags</option></select></div></div>`,'Generate hashtags','Your AI hashtag set'),`Enter your topic or describe your post, choose the platform and count, then generate. Mix broad and niche tags for the best reach, and remove any tag that does not fit your post.`,['ai-caption-generator','ai-text-writer','ai-product-description']);bindAI({prefix:'aih',task:'hashtag',filename:'hectool-ai-hashtags.txt',emptyMsg:'Enter a topic first.',clearIds:['aih-input'],getInput:()=>$('#aih-input').value,getOptions:()=>({platform:$('#aih-platform').value,count:$('#aih-count').value})});}
 function aiStory(t){toolShell(t,aiBody('aist',`<div class="field"><label class="label" for="aist-theme">Story theme or idea</label><textarea class="textarea" id="aist-theme" style="min-height:100px" placeholder="e.g. A lighthouse keeper discovers the light is guiding something other than ships"></textarea></div><div class="row"><div class="field"><label class="label" for="aist-chars">Main characters</label><input class="input" id="aist-chars" placeholder="e.g. Zara, a curious 12-year-old; Old Man Rafi"></div><div class="field"><label class="label" for="aist-genre">Genre</label><select class="select" id="aist-genre"><option value="adventure">Adventure</option><option value="fantasy">Fantasy</option><option value="mystery">Mystery</option><option value="funny">Funny</option><option value="heartwarming">Heartwarming</option><option value="sci-fi">Sci-fi</option></select></div></div><div class="field"><label class="label" for="aist-length">Story length</label><select class="select" id="aist-length"><option value="short">Short (~300 words)</option><option value="medium" selected>Medium (~600 words)</option><option value="long">Long (~1000 words)</option></select></div>`,'Generate story','Your AI short story'),`Give a theme, add your main characters, pick a genre and length, then generate. Every run creates a new original story from your idea.`,['ai-text-writer','ai-caption-generator','ai-paraphraser']);bindAI({prefix:'aist',task:'story',filename:'hectool-ai-story.txt',emptyMsg:'Enter a story theme or idea first.',clearIds:['aist-theme','aist-chars'],validate:()=>{if(!$('#aist-theme').value.trim())return 'Enter a story theme or idea first.';return null},getInput:()=>{const th=$('#aist-theme').value.trim(),ch=$('#aist-chars').value.trim();return 'Theme: '+th+(ch?'\n\nMain characters: '+ch:'')},getOptions:()=>({characters:$('#aist-chars').value.trim(),genre:$('#aist-genre').value,length:$('#aist-length').value})});}
-function infoPage(which){const pages={about:['About HecTool',`<p>HecTool is a focused collection of 174 free utilities for everyday digital tasks: 143 browser tools across text, calculations, images, conversions and developer utilities, plus 10 AI text tools for writing, email, summaries, translation, paraphrasing, grammar, product descriptions, captions, hashtags and stories, 10 AI image tools that generate pictures, avatars, logos and artwork, and 11 PDF tools that merge, split, rotate, organize and convert PDFs.</p><h2>Our approach</h2><p>We build one useful tool at a time. Browser tools process everything locally on your device; AI tools send only the text you enter to the AI service and show its real response.</p>`],contact:['Contact',`<p>Have a tool suggestion or found a problem? We welcome useful, specific feedback.</p><div class="contact-card"><h2>What helps us most</h2><p>When reporting a problem, include the tool name, your device or browser, and what you expected to happen. For tool suggestions, tell us the task you are trying to complete.</p><p>Please never send private documents or sensitive information when asking for help with a tool.</p></div>`],privacy:['Privacy Policy',`<p><strong>Last updated: October 14, 2026</strong></p><h2>Local processing</h2><p>The image, text and calculation tools run in your web browser. Files selected for image tools are not uploaded by this page.</p><h2>AI tools</h2><p>When you use an AI tool, the text and options you enter are sent over an encrypted connection to the AI service that generates your result. Do not enter passwords, financial details or other sensitive information into AI tools. This page does not store your AI inputs or results — they exist only in the open browser session.</p><h2>Security &amp; tracking</h2><p>This page contains no API keys, secrets or passwords — AI requests pass through a secure server endpoint, and the AI service used (Pollinations) requires no API key. All connections use HTTPS. We run no analytics, set no tracking cookies and use no advertising trackers. For safety, AI tools also limit how much text can be sent in a single request.</p><h2>Information you provide</h2><p>For browser tools, text, dates, numbers and files you enter are used only in the open browser session to produce the requested result. This version does not provide accounts or saved histories.</p><h2>Third-party resources</h2><p>Some tools load software libraries from a content delivery network: the QR and barcode generators, the PDF tools (pdf-lib and pdf.js), the Markdown, encryption and password-strength tools, and the currency converter, which fetches public exchange rates from open.er-api.com. Your files and content are processed locally and are not sent to the library providers. The AI tools send only the text you enter to the AI service that generates your result — Pollinations — over an encrypted connection. Pollinations requires no API key, and this page stores no API keys, secrets, or passwords.</p><h2>Contact</h2><p>Questions about this policy can be sent through the Contact page.</p>`],terms:['Terms of Service',`<p><strong>Last updated: October 14, 2026</strong></p><h2>Using the tools</h2><p>You may use the available tools for lawful personal or business purposes. You are responsible for checking results before relying on them.</p><h2>No professional advice</h2><p>Calculations and conversions are general utilities, not financial, legal, medical or other professional advice.</p><h2>Availability</h2><p>The service is provided as available. Features may change as the product develops.</p><h2>Your content</h2><p>You retain responsibility for text and files you process. Do not use the service to infringe rights or process material you are not authorized to use.</p>`]};const p=pages[which]||pages.about;document.title=`${p[0]} — HecTool`;app.innerHTML=`<section class="info-page"><div class="wrap prose"><div class="breadcrumb"><a href="#home">Home</a><span>›</span><span>${p[0]}</span></div><h1>${p[0]}</h1>${p[1]}</div></section>`;window.scrollTo(0,0)}
+function infoPage(which){const pages={about:['About HecTool',`<p>HecTool is a focused collection of 190 free utilities for everyday digital tasks: 159 browser tools across text, calculations, images, conversions and developer utilities, plus 10 AI text tools for writing, email, summaries, translation, paraphrasing, grammar, product descriptions, captions, hashtags and stories, 10 AI image tools that generate pictures, avatars, logos and artwork, and 11 PDF tools that merge, split, rotate, organize and convert PDFs.</p><h2>Our approach</h2><p>We build one useful tool at a time. Browser tools process everything locally on your device; AI tools send only the text you enter to the AI service and show its real response.</p>`],contact:['Contact',`<p>Have a tool suggestion or found a problem? We welcome useful, specific feedback.</p><div class="contact-card"><h2>What helps us most</h2><p>When reporting a problem, include the tool name, your device or browser, and what you expected to happen. For tool suggestions, tell us the task you are trying to complete.</p><p>Please never send private documents or sensitive information when asking for help with a tool.</p></div>`],privacy:['Privacy Policy',`<p><strong>Last updated: October 14, 2026</strong></p><h2>Local processing</h2><p>The image, text and calculation tools run in your web browser. Files selected for image tools are not uploaded by this page.</p><h2>AI tools</h2><p>When you use an AI tool, the text and options you enter are sent over an encrypted connection to the AI service that generates your result. Do not enter passwords, financial details or other sensitive information into AI tools. This page does not store your AI inputs or results — they exist only in the open browser session.</p><h2>Security &amp; tracking</h2><p>This page contains no API keys, secrets or passwords — AI requests pass through a secure server endpoint, and the AI service used (Pollinations) requires no API key. All connections use HTTPS. We run no analytics, set no tracking cookies and use no advertising trackers. For safety, AI tools also limit how much text can be sent in a single request.</p><h2>Information you provide</h2><p>For browser tools, text, dates, numbers and files you enter are used only in the open browser session to produce the requested result. This version does not provide accounts or saved histories.</p><h2>Third-party resources</h2><p>Some tools load software libraries from a content delivery network: the QR and barcode generators, the PDF tools (pdf-lib and pdf.js), the Markdown, encryption and password-strength tools, and the currency converter, which fetches public exchange rates from open.er-api.com. The What Is My IP tool attempts to fetch your public IP address from api.ipify.org; the site’s security policy normally blocks that request, in which case no IP address is shown. Your files and content are processed locally and are not sent to the library providers. The AI tools send only the text you enter to the AI service that generates your result — Pollinations — over an encrypted connection. Pollinations requires no API key, and this page stores no API keys, secrets, or passwords.</p><h2>Contact</h2><p>Questions about this policy can be sent through the Contact page.</p>`],terms:['Terms of Service',`<p><strong>Last updated: October 14, 2026</strong></p><h2>Using the tools</h2><p>You may use the available tools for lawful personal or business purposes. You are responsible for checking results before relying on them.</p><h2>No professional advice</h2><p>Calculations and conversions are general utilities, not financial, legal, medical or other professional advice.</p><h2>Availability</h2><p>The service is provided as available. Features may change as the product develops.</p><h2>Your content</h2><p>You retain responsibility for text and files you process. Do not use the service to infringe rights or process material you are not authorized to use.</p>`]};const p=pages[which]||pages.about;document.title=`${p[0]} — HecTool`;app.innerHTML=`<section class="info-page"><div class="wrap prose"><div class="breadcrumb"><a href="#home">Home</a><span>›</span><span>${p[0]}</span></div><h1>${p[0]}</h1>${p[1]}</div></section>`;window.scrollTo(0,0)}
 function toolsPage(){home();setTimeout(()=>$('#tools').scrollIntoView(),0)}
 function wireOpen(){$$('[data-open]').forEach(e=>{e.onclick=()=>openTool(e.dataset.open);e.onkeydown=x=>{if(x.key==='Enter'||x.key===' '){x.preventDefault();openTool(e.dataset.open)}}});$$('[data-category]').forEach(e=>e.onclick=()=>{location.hash='home';setTimeout(()=>{const b=$(`[data-filter="${e.dataset.category}"]`);if(b){b.click();$('#tools').scrollIntoView()}},20)})}
 function route(){const _b=window.__bootTool;window.__bootTool=null;const h=_b?('tool/'+_b):(location.hash.replace(/^#/,'')||'home');if(h.startsWith('tool/'))renderTool(h.slice(5));else if(['about','contact','privacy','terms'].includes(h))infoPage(h);else if(h==='tools')toolsPage();else home();wireGlobal()}
@@ -729,11 +760,11 @@ function binHexTool(t){ toolShell(t, `<div class="field"><label class="label" fo
 function romanTool(t){ toolShell(t, `<div class="field"><label class="label" for="roman-numeral-converter-num">Number (1–3999)</label><input class="input" type="number" id="roman-numeral-converter-num" min="1" max="3999" placeholder="e.g. 2026"></div><div class="actions"><button class="btn primary" id="roman-numeral-converter-to-roman">Convert to Roman</button></div><div class="result" id="roman-numeral-converter-roman-result">Enter a number from 1 to 3999.</div><div class="field"><label class="label" for="roman-numeral-converter-roman">Roman numeral</label><input class="input" type="text" id="roman-numeral-converter-roman" placeholder="e.g. MMXXVI"></div><div class="actions"><button class="btn primary" id="roman-numeral-converter-to-num">Convert to Number</button></div><div class="result" id="roman-numeral-converter-num-result">Enter a valid Roman numeral (I–MMMCMXCIX).</div>`, `Convert numbers 1–3999 to Roman numerals and back. Roman numerals are validated against the standard form before converting.`, ['unit-converter','percentage-calculator','age-calculator']); const numInput=$('#roman-numeral-converter-num'); const romanInput=$('#roman-numeral-converter-roman'); const romanResult=$('#roman-numeral-converter-roman-result'); const numResult=$('#roman-numeral-converter-num-result'); const table=[[1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],[100,'C'],[90,'XC'],[50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']]; const values={'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}; $('#roman-numeral-converter-to-roman').addEventListener('click',function(){ const n=parseInt(numInput.value,10); if(isNaN(n)||n<1||n>3999){ romanResult.innerHTML='<div class="error">Please enter a whole number from 1 to 3999.</div>'; return; } let remaining=n; let roman=''; table.forEach(function(pair){ while(remaining>=pair[0]){ roman+=pair[1]; remaining-=pair[0]; } }); romanResult.innerHTML='<div class="result-big">'+esc(roman)+'</div><div>'+fmt(n)+' in Roman numerals.</div>'; }); $('#roman-numeral-converter-to-num').addEventListener('click',function(){ const raw=romanInput.value.trim().toUpperCase(); const re=/^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/; if(!raw||!re.test(raw)){ numResult.innerHTML='<div class="error">Please enter a valid Roman numeral (1–3999, e.g. MMXXVI).</div>'; return; } let total=0; for(let i=0;i<raw.length;i++){ const cur=values[raw[i]]; const next=values[raw[i+1]]||0; if(cur<next){ total-=cur; } else { total+=cur; } } numResult.innerHTML='<div class="result-big">'+fmt(total)+'</div><div>'+esc(raw)+' as a regular number.</div>'; }); }
 
 // ---- fragment c ----
-function imageCropper(t){ toolShell(t, `<div class="field"><label class="label" for="crop-file">Choose image</label><input class="input" id="crop-file" type="file" accept="image/*"></div><div class="row" style="display:flex;flex-wrap:wrap;gap:8px"><div class="field"><label class="label" for="crop-top">Top margin (px)</label><input class="input" id="crop-top" type="number" min="0" value="0"></div><div class="field"><label class="label" for="crop-right">Right margin (px)</label><input class="input" id="crop-right" type="number" min="0" value="0"></div><div class="field"><label class="label" for="crop-bottom">Bottom margin (px)</label><input class="input" id="crop-bottom" type="number" min="0" value="0"></div><div class="field"><label class="label" for="crop-left">Left margin (px)</label><input class="input" id="crop-left" type="number" min="0" value="0"></div></div><div class="error" id="crop-error" style="display:none"></div><div class="actions"><button class="btn primary" id="crop-btn">Crop Image</button></div><img loading="lazy" decoding="async" id="crop-preview" style="display:none;max-width:100%;height:auto" alt="Original preview"><div class="result" id="crop-dims"></div><canvas id="crop-canvas" style="display:none;max-width:100%"></canvas><div class="actions"><button class="btn secondary" id="crop-download" style="display:none">Download Cropped</button></div>`, `Upload an image, enter how many pixels to cut from each side, then Crop. Download the cropped result as PNG.`, ['image-resizer','image-compressor','image-converter']); const fileEl=t.querySelector('#crop-file'); const preview=t.querySelector('#crop-preview'); const canvas=t.querySelector('#crop-canvas'); const dims=t.querySelector('#crop-dims'); const errEl=t.querySelector('#crop-error'); const dlBtn=t.querySelector('#crop-download'); function showErr(msg){ errEl.textContent=msg; errEl.style.display='block'; } function hideErr(){ errEl.textContent=''; errEl.style.display='none'; } let img=null; fileEl.addEventListener('change', function(){ hideErr(); const f=fileEl.files && fileEl.files[0]; if(!f){ return; } const url=URL.createObjectURL(f); const im=new Image(); im.onload=function(){ img=im; preview.src=url; preview.style.display='block'; dims.textContent='Original: '+im.naturalWidth+' × '+im.naturalHeight+' px'; canvas.style.display='none'; dlBtn.style.display='none'; }; im.onerror=function(){ showErr('Could not load that image. Please try another file.'); }; im.src=url; }); t.querySelector('#crop-btn').addEventListener('click', function(){ hideErr(); if(!img){ showErr('Please choose an image first.'); return; } const top=parseInt(t.querySelector('#crop-top').value,10); const right=parseInt(t.querySelector('#crop-right').value,10); const bottom=parseInt(t.querySelector('#crop-bottom').value,10); const left=parseInt(t.querySelector('#crop-left').value,10); if([top,right,bottom,left].some(function(v){ return isNaN(v)||v<0; })){ showErr('Margins must be numbers 0 or higher.'); return; } const W=img.naturalWidth; const H=img.naturalHeight; if(left+right>=W){ showErr('Left + right margins must be less than the image width ('+W+' px).'); return; } if(top+bottom>=H){ showErr('Top + bottom margins must be less than the image height ('+H+' px).'); return; } const cw=W-left-right; const ch=H-top-bottom; canvas.width=cw; canvas.height=ch; const ctx=canvas.getContext('2d'); ctx.drawImage(img,left,top,cw,ch,0,0,cw,ch); canvas.style.display='block'; dims.textContent='Original: '+W+' × '+H+' px  |  Cropped: '+cw+' × '+ch+' px'; dlBtn.style.display='inline-block'; }); dlBtn.addEventListener('click', function(){ const a=document.createElement('a'); a.download='cropped.png'; a.href=canvas.toDataURL('image/png'); a.click(); }); }
+function imageCropper(t){ toolShell(t, `<div class="field"><label class="label" for="crop-file">Choose image</label><input class="input" id="crop-file" type="file" accept="image/*"></div><div class="row" style="display:flex;flex-wrap:wrap;gap:8px"><div class="field"><label class="label" for="crop-top">Top margin (px)</label><input class="input" id="crop-top" type="number" min="0" value="0"></div><div class="field"><label class="label" for="crop-right">Right margin (px)</label><input class="input" id="crop-right" type="number" min="0" value="0"></div><div class="field"><label class="label" for="crop-bottom">Bottom margin (px)</label><input class="input" id="crop-bottom" type="number" min="0" value="0"></div><div class="field"><label class="label" for="crop-left">Left margin (px)</label><input class="input" id="crop-left" type="number" min="0" value="0"></div></div><div class="error" id="crop-error" style="display:none"></div><div class="actions"><button class="btn primary" id="crop-btn">Crop Image</button></div><img id="crop-preview" style="display:none;max-width:100%;height:auto" alt="Original preview"><div class="result" id="crop-dims"></div><canvas id="crop-canvas" style="display:none;max-width:100%"></canvas><div class="actions"><button class="btn secondary" id="crop-download" style="display:none">Download Cropped</button></div>`, `Upload an image, enter how many pixels to cut from each side, then Crop. Download the cropped result as PNG.`, ['image-resizer','image-compressor','image-converter']); const fileEl=t.querySelector('#crop-file'); const preview=t.querySelector('#crop-preview'); const canvas=t.querySelector('#crop-canvas'); const dims=t.querySelector('#crop-dims'); const errEl=t.querySelector('#crop-error'); const dlBtn=t.querySelector('#crop-download'); function showErr(msg){ errEl.textContent=msg; errEl.style.display='block'; } function hideErr(){ errEl.textContent=''; errEl.style.display='none'; } let img=null; fileEl.addEventListener('change', function(){ hideErr(); const f=fileEl.files && fileEl.files[0]; if(!f){ return; } const url=URL.createObjectURL(f); const im=new Image(); im.onload=function(){ img=im; preview.src=url; preview.style.display='block'; dims.textContent='Original: '+im.naturalWidth+' × '+im.naturalHeight+' px'; canvas.style.display='none'; dlBtn.style.display='none'; }; im.onerror=function(){ showErr('Could not load that image. Please try another file.'); }; im.src=url; }); t.querySelector('#crop-btn').addEventListener('click', function(){ hideErr(); if(!img){ showErr('Please choose an image first.'); return; } const top=parseInt(t.querySelector('#crop-top').value,10); const right=parseInt(t.querySelector('#crop-right').value,10); const bottom=parseInt(t.querySelector('#crop-bottom').value,10); const left=parseInt(t.querySelector('#crop-left').value,10); if([top,right,bottom,left].some(function(v){ return isNaN(v)||v<0; })){ showErr('Margins must be numbers 0 or higher.'); return; } const W=img.naturalWidth; const H=img.naturalHeight; if(left+right>=W){ showErr('Left + right margins must be less than the image width ('+W+' px).'); return; } if(top+bottom>=H){ showErr('Top + bottom margins must be less than the image height ('+H+' px).'); return; } const cw=W-left-right; const ch=H-top-bottom; canvas.width=cw; canvas.height=ch; const ctx=canvas.getContext('2d'); ctx.drawImage(img,left,top,cw,ch,0,0,cw,ch); canvas.style.display='block'; dims.textContent='Original: '+W+' × '+H+' px  |  Cropped: '+cw+' × '+ch+' px'; dlBtn.style.display='inline-block'; }); dlBtn.addEventListener('click', function(){ const a=document.createElement('a'); a.download='cropped.png'; a.href=canvas.toDataURL('image/png'); a.click(); }); }
 function imageRotator(t){ toolShell(t, `<div class="field"><label class="label" for="rot-file">Choose image</label><input class="input" id="rot-file" type="file" accept="image/*"></div><div class="error" id="rot-error" style="display:none"></div><div class="actions"><button class="btn secondary" id="rot-cw">Rotate 90° CW</button><button class="btn secondary" id="rot-ccw">Rotate 90° CCW</button><button class="btn secondary" id="rot-fh">Flip Horizontal</button><button class="btn secondary" id="rot-fv">Flip Vertical</button></div><canvas id="rot-canvas" style="max-width:100%"></canvas><div class="actions"><button class="btn primary" id="rot-download" style="display:none">Download Image</button></div>`, `Upload an image, then rotate or flip it. Each click applies to the current image, so you can combine them. Download when done.`, ['image-cropper','image-filters','image-resizer']); const fileEl=t.querySelector('#rot-file'); const canvas=t.querySelector('#rot-canvas'); const errEl=t.querySelector('#rot-error'); const dlBtn=t.querySelector('#rot-download'); function showErr(msg){ errEl.textContent=msg; errEl.style.display='block'; } function hideErr(){ errEl.textContent=''; errEl.style.display='none'; } let loaded=false; function snapshot(){ const tmp=document.createElement('canvas'); tmp.width=canvas.width; tmp.height=canvas.height; tmp.getContext('2d').drawImage(canvas,0,0); return tmp; } fileEl.addEventListener('change', function(){ hideErr(); const f=fileEl.files && fileEl.files[0]; if(!f){ return; } const url=URL.createObjectURL(f); const im=new Image(); im.onload=function(){ canvas.width=im.naturalWidth; canvas.height=im.naturalHeight; canvas.getContext('2d').drawImage(im,0,0); loaded=true; dlBtn.style.display='inline-block'; }; im.onerror=function(){ showErr('Could not load that image. Please try another file.'); }; im.src=url; }); function needImage(){ if(!loaded){ showErr('Please choose an image first.'); return false; } hideErr(); return true; } t.querySelector('#rot-cw').addEventListener('click', function(){ if(!needImage()){ return; } const tmp=snapshot(); canvas.width=tmp.height; canvas.height=tmp.width; const ctx=canvas.getContext('2d'); ctx.translate(canvas.width/2,canvas.height/2); ctx.rotate(Math.PI/2); ctx.drawImage(tmp,-tmp.width/2,-tmp.height/2); }); t.querySelector('#rot-ccw').addEventListener('click', function(){ if(!needImage()){ return; } const tmp=snapshot(); canvas.width=tmp.height; canvas.height=tmp.width; const ctx=canvas.getContext('2d'); ctx.translate(canvas.width/2,canvas.height/2); ctx.rotate(-Math.PI/2); ctx.drawImage(tmp,-tmp.width/2,-tmp.height/2); }); t.querySelector('#rot-fh').addEventListener('click', function(){ if(!needImage()){ return; } const tmp=snapshot(); const ctx=canvas.getContext('2d'); ctx.clearRect(0,0,canvas.width,canvas.height); ctx.translate(canvas.width,0); ctx.scale(-1,1); ctx.drawImage(tmp,0,0); }); t.querySelector('#rot-fv').addEventListener('click', function(){ if(!needImage()){ return; } const tmp=snapshot(); const ctx=canvas.getContext('2d'); ctx.clearRect(0,0,canvas.width,canvas.height); ctx.translate(0,canvas.height); ctx.scale(1,-1); ctx.drawImage(tmp,0,0); }); dlBtn.addEventListener('click', function(){ const a=document.createElement('a'); a.download='rotated.png'; a.href=canvas.toDataURL('image/png'); a.click(); }); }
 function imageFilters(t){ toolShell(t, `<div class="field"><label class="label" for="filt-file">Choose image</label><input class="input" id="filt-file" type="file" accept="image/*"></div><div class="field"><label class="label" for="filt-select">Filter</label><select class="select" id="filt-select"><option value="none">None (original)</option><option value="grayscale">Grayscale</option><option value="sepia">Sepia</option><option value="invert">Invert</option><option value="blur">Blur</option><option value="contrast">Contrast</option><option value="brightness">Brightness</option></select></div><div class="error" id="filt-error" style="display:none"></div><div class="actions"><button class="btn primary" id="filt-apply">Apply Filter</button></div><canvas id="filt-canvas" style="max-width:100%"></canvas><div class="actions"><button class="btn secondary" id="filt-download" style="display:none">Download Image</button></div>`, `Upload an image, pick a filter and Apply. Filters always start from your original image, so switching filters never stacks effects.`, ['image-cropper','image-rotator','image-converter']); const fileEl=t.querySelector('#filt-file'); const canvas=t.querySelector('#filt-canvas'); const errEl=t.querySelector('#filt-error'); const dlBtn=t.querySelector('#filt-download'); const sel=t.querySelector('#filt-select'); function showErr(msg){ errEl.textContent=msg; errEl.style.display='block'; } function hideErr(){ errEl.textContent=''; errEl.style.display='none'; } let orig=null; function drawWith(filter){ canvas.width=orig.naturalWidth; canvas.height=orig.naturalHeight; const ctx=canvas.getContext('2d'); ctx.filter=filter; ctx.drawImage(orig,0,0); ctx.filter='none'; } fileEl.addEventListener('change', function(){ hideErr(); const f=fileEl.files && fileEl.files[0]; if(!f){ return; } const url=URL.createObjectURL(f); const im=new Image(); im.onload=function(){ orig=im; drawWith('none'); dlBtn.style.display='inline-block'; }; im.onerror=function(){ showErr('Could not load that image. Please try another file.'); }; im.src=url; }); t.querySelector('#filt-apply').addEventListener('click', function(){ hideErr(); if(!orig){ showErr('Please choose an image first.'); return; } const map={none:'none',grayscale:'grayscale(1)',sepia:'sepia(1)',invert:'invert(1)',blur:'blur(4px)',contrast:'contrast(1.5)',brightness:'brightness(1.3)'}; drawWith(map[sel.value]||'none'); }); dlBtn.addEventListener('click', function(){ const a=document.createElement('a'); a.download='filtered.png'; a.href=canvas.toDataURL('image/png'); a.click(); }); }
-function imageToBase64(t){ toolShell(t, `<div class="field"><label class="label" for="b64-file">Choose image</label><input class="input" id="b64-file" type="file" accept="image/*"></div><div class="result" id="b64-info"></div><img loading="lazy" decoding="async" id="b64-preview" style="display:none;max-width:100%;height:auto" alt="Preview"><div class="field"><label class="label" for="b64-output">Base64 data URL</label><textarea class="textarea" id="b64-output" rows="6" readonly placeholder="Your Base64 data URL will appear here…"></textarea></div><div class="result" id="b64-first"></div><div class="actions"><button class="btn primary" id="b64-copy">Copy Base64</button></div>`, `Upload an image to get its Base64 data URL. Copy it and paste it into HTML, CSS or code.`, ['base64-to-image','image-converter','image-compressor']); const fileEl=t.querySelector('#b64-file'); const out=t.querySelector('#b64-output'); const info=t.querySelector('#b64-info'); const first=t.querySelector('#b64-first'); const preview=t.querySelector('#b64-preview'); fileEl.addEventListener('change', function(){ const f=fileEl.files && fileEl.files[0]; if(!f){ return; } const reader=new FileReader(); reader.onload=function(){ const result=reader.result; out.value=result; info.textContent='File: '+f.name+' — '+(f.size/1024).toFixed(1)+' KB — Base64 length: '+result.length+' characters'; first.textContent='First 200 chars: '+result.slice(0,200)+'…'; preview.src=result; preview.style.display='block'; }; reader.readAsDataURL(f); }); t.querySelector('#b64-copy').addEventListener('click', function(){ if(!out.value){ info.textContent='Please choose an image first.'; return; } copy(out.value); }); }
-function base64ToImage(t){ toolShell(t, `<div class="field"><label class="label" for="b64i-input">Base64 string</label><textarea class="textarea" id="b64i-input" rows="6" placeholder="Paste a Base64 string, with or without the data:image/... prefix…"></textarea></div><div class="error" id="b64i-error" style="display:none"></div><div class="actions"><button class="btn primary" id="b64i-btn">Preview Image</button></div><img loading="lazy" decoding="async" id="b64i-preview" style="display:none;max-width:100%;height:auto" alt="Decoded preview"><div class="actions"><button class="btn secondary" id="b64i-download" style="display:none">Download PNG</button></div>`, `Paste a Base64 string (with or without the data: prefix) and preview it, then download it as a PNG.`, ['image-to-base64','image-converter','image-resizer']); const input=t.querySelector('#b64i-input'); const preview=t.querySelector('#b64i-preview'); const errEl=t.querySelector('#b64i-error'); const dlBtn=t.querySelector('#b64i-download'); let current=''; function showErr(msg){ errEl.textContent=msg; errEl.style.display='block'; } function hideErr(){ errEl.textContent=''; errEl.style.display='none'; } t.querySelector('#b64i-btn').addEventListener('click', function(){ hideErr(); let s=input.value.trim(); if(!s){ showErr('Please paste a Base64 string first.'); return; } if(s.indexOf('data:')!==0){ s='data:image/png;base64,'+s; } current=s; preview.style.display='none'; dlBtn.style.display='none'; preview.onerror=function(){ showErr('That Base64 string is not a valid image. Please check it and try again.'); }; preview.onload=function(){ hideErr(); preview.style.display='block'; dlBtn.style.display='inline-block'; }; preview.src=s; }); dlBtn.addEventListener('click', function(){ if(!current){ return; } const a=document.createElement('a'); a.download='image.png'; a.href=current; a.click(); }); }
+function imageToBase64(t){ toolShell(t, `<div class="field"><label class="label" for="b64-file">Choose image</label><input class="input" id="b64-file" type="file" accept="image/*"></div><div class="result" id="b64-info"></div><img id="b64-preview" style="display:none;max-width:100%;height:auto" alt="Preview"><div class="field"><label class="label" for="b64-output">Base64 data URL</label><textarea class="textarea" id="b64-output" rows="6" readonly placeholder="Your Base64 data URL will appear here…"></textarea></div><div class="result" id="b64-first"></div><div class="actions"><button class="btn primary" id="b64-copy">Copy Base64</button></div>`, `Upload an image to get its Base64 data URL. Copy it and paste it into HTML, CSS or code.`, ['base64-to-image','image-converter','image-compressor']); const fileEl=t.querySelector('#b64-file'); const out=t.querySelector('#b64-output'); const info=t.querySelector('#b64-info'); const first=t.querySelector('#b64-first'); const preview=t.querySelector('#b64-preview'); fileEl.addEventListener('change', function(){ const f=fileEl.files && fileEl.files[0]; if(!f){ return; } const reader=new FileReader(); reader.onload=function(){ const result=reader.result; out.value=result; info.textContent='File: '+f.name+' — '+(f.size/1024).toFixed(1)+' KB — Base64 length: '+result.length+' characters'; first.textContent='First 200 chars: '+result.slice(0,200)+'…'; preview.src=result; preview.style.display='block'; }; reader.readAsDataURL(f); }); t.querySelector('#b64-copy').addEventListener('click', function(){ if(!out.value){ info.textContent='Please choose an image first.'; return; } copy(out.value); }); }
+function base64ToImage(t){ toolShell(t, `<div class="field"><label class="label" for="b64i-input">Base64 string</label><textarea class="textarea" id="b64i-input" rows="6" placeholder="Paste a Base64 string, with or without the data:image/... prefix…"></textarea></div><div class="error" id="b64i-error" style="display:none"></div><div class="actions"><button class="btn primary" id="b64i-btn">Preview Image</button></div><img id="b64i-preview" style="display:none;max-width:100%;height:auto" alt="Decoded preview"><div class="actions"><button class="btn secondary" id="b64i-download" style="display:none">Download PNG</button></div>`, `Paste a Base64 string (with or without the data: prefix) and preview it, then download it as a PNG.`, ['image-to-base64','image-converter','image-resizer']); const input=t.querySelector('#b64i-input'); const preview=t.querySelector('#b64i-preview'); const errEl=t.querySelector('#b64i-error'); const dlBtn=t.querySelector('#b64i-download'); let current=''; function showErr(msg){ errEl.textContent=msg; errEl.style.display='block'; } function hideErr(){ errEl.textContent=''; errEl.style.display='none'; } t.querySelector('#b64i-btn').addEventListener('click', function(){ hideErr(); let s=input.value.trim(); if(!s){ showErr('Please paste a Base64 string first.'); return; } if(s.indexOf('data:')!==0){ s='data:image/png;base64,'+s; } current=s; preview.style.display='none'; dlBtn.style.display='none'; preview.onerror=function(){ showErr('That Base64 string is not a valid image. Please check it and try again.'); }; preview.onload=function(){ hideErr(); preview.style.display='block'; dlBtn.style.display='inline-block'; }; preview.src=s; }); dlBtn.addEventListener('click', function(){ if(!current){ return; } const a=document.createElement('a'); a.download='image.png'; a.href=current; a.click(); }); }
 function memeText(t){ toolShell(t, `<div class="field"><label class="label" for="meme-file">Choose image</label><input class="input" id="meme-file" type="file" accept="image/*"></div><div class="field"><label class="label" for="meme-top">Top text</label><input class="input" id="meme-top" type="text" placeholder="TOP TEXT"></div><div class="field"><label class="label" for="meme-bottom">Bottom text</label><input class="input" id="meme-bottom" type="text" placeholder="BOTTOM TEXT"></div><div class="field"><label class="label" for="meme-size">Font size (px)</label><input class="input" id="meme-size" type="number" min="10" max="200" value="48"></div><div class="error" id="meme-error" style="display:none"></div><div class="actions"><button class="btn primary" id="meme-btn">Add Meme Text</button></div><canvas id="meme-canvas" style="max-width:100%"></canvas><div class="actions"><button class="btn secondary" id="meme-download" style="display:none">Download Meme</button></div>`, `Upload an image, type top and bottom text, and generate a classic meme with bold white text and a black outline.`, ['image-cropper','image-filters','image-converter']); const fileEl=t.querySelector('#meme-file'); const canvas=t.querySelector('#meme-canvas'); const errEl=t.querySelector('#meme-error'); const dlBtn=t.querySelector('#meme-download'); let img=null; function showErr(msg){ errEl.textContent=msg; errEl.style.display='block'; } function hideErr(){ errEl.textContent=''; errEl.style.display='none'; } fileEl.addEventListener('change', function(){ hideErr(); const f=fileEl.files && fileEl.files[0]; if(!f){ return; } const url=URL.createObjectURL(f); const im=new Image(); im.onload=function(){ img=im; canvas.width=im.naturalWidth; canvas.height=im.naturalHeight; canvas.getContext('2d').drawImage(im,0,0); dlBtn.style.display='inline-block'; }; im.onerror=function(){ showErr('Could not load that image. Please try another file.'); }; im.src=url; }); t.querySelector('#meme-btn').addEventListener('click', function(){ hideErr(); if(!img){ showErr('Please choose an image first.'); return; } let size=parseInt(t.querySelector('#meme-size').value,10); if(isNaN(size)||size<10){ size=48; } if(size>200){ size=200; } canvas.width=img.naturalWidth; canvas.height=img.naturalHeight; const ctx=canvas.getContext('2d'); ctx.drawImage(img,0,0); ctx.textAlign='center'; ctx.textBaseline='top'; ctx.font='bold '+size+'px sans-serif'; ctx.lineWidth=Math.max(2,Math.round(size/10)); ctx.strokeStyle='#000'; ctx.fillStyle='#fff'; function wrap(text){ const words=text.split(/\s+/).filter(Boolean); const lines=[]; let line=''; words.forEach(function(w){ const test=line?line+' '+w:w; if(ctx.measureText(test).width>canvas.width-40 && line){ lines.push(line); line=w; } else { line=test; } }); if(line){ lines.push(line); } return lines; } function drawLines(lines,startY){ lines.forEach(function(line,i){ const x=canvas.width/2; const y=startY+i*(size+6); ctx.strokeText(line,x,y); ctx.fillText(line,x,y); }); } const topLines=wrap((t.querySelector('#meme-top').value||'').toUpperCase()); const bottomLines=wrap((t.querySelector('#meme-bottom').value||'').toUpperCase()); drawLines(topLines,10); const bottomStart=canvas.height-10-bottomLines.length*(size+6); drawLines(bottomLines,Math.max(10,bottomStart)); dlBtn.style.display='inline-block'; }); dlBtn.addEventListener('click', function(){ const a=document.createElement('a'); a.download='meme.png'; a.href=canvas.toDataURL('image/png'); a.click(); }); }
 function faviconGen(t){ toolShell(t, `<div class="field"><label class="label" for="fav-file">Choose image</label><input class="input" id="fav-file" type="file" accept="image/*"></div><div class="error" id="fav-error" style="display:none"></div><div class="actions"><button class="btn primary" id="fav-btn">Generate Favicons</button></div><div class="result" id="fav-output"></div>`, `Upload any image (a square logo works best) and generate favicon PNGs at 16×16, 32×32 and 48×48.`, ['image-resizer','image-compressor','image-converter']); const fileEl=t.querySelector('#fav-file'); const errEl=t.querySelector('#fav-error'); const output=t.querySelector('#fav-output'); let img=null; function showErr(msg){ errEl.textContent=msg; errEl.style.display='block'; } function hideErr(){ errEl.textContent=''; errEl.style.display='none'; } fileEl.addEventListener('change', function(){ hideErr(); const f=fileEl.files && fileEl.files[0]; if(!f){ return; } const url=URL.createObjectURL(f); const im=new Image(); im.onload=function(){ img=im; output.textContent='Image loaded — click Generate Favicons.'; }; im.onerror=function(){ showErr('Could not load that image. Please try another file.'); }; im.src=url; }); t.querySelector('#fav-btn').addEventListener('click', function(){ hideErr(); if(!img){ showErr('Please choose an image first.'); return; } output.innerHTML=''; [16,32,48].forEach(function(size){ const wrap=document.createElement('div'); wrap.className='field'; const label=document.createElement('div'); label.textContent=size+' × '+size; const cv=document.createElement('canvas'); cv.width=size; cv.height=size; cv.style.cssText='max-width:100%;border:1px solid #ddd'; const ctx=cv.getContext('2d'); const side=Math.min(img.naturalWidth,img.naturalHeight); const sx=(img.naturalWidth-side)/2; const sy=(img.naturalHeight-side)/2; ctx.drawImage(img,sx,sy,side,side,0,0,size,size); const btn=document.createElement('button'); btn.className='btn secondary'; btn.textContent='Download favicon-'+size+'.png'; btn.addEventListener('click', function(){ const a=document.createElement('a'); a.download='favicon-'+size+'.png'; a.href=cv.toDataURL('image/png'); a.click(); }); wrap.appendChild(label); wrap.appendChild(cv); wrap.appendChild(document.createElement('br')); wrap.appendChild(btn); output.appendChild(wrap); }); }); }
 function imagePalette(t){ toolShell(t, `<div class="field"><label class="label" for="pal-file">Choose image</label><input class="input" id="pal-file" type="file" accept="image/*"></div><div class="error" id="pal-error" style="display:none"></div><canvas id="pal-canvas" style="max-width:100%"></canvas><div class="result" id="pal-output"></div>`, `Upload an image to extract its 6 most dominant colors. Click any swatch to copy its HEX code.`, ['color-palette-generator','hex-to-rgb','image-filters']); const fileEl=t.querySelector('#pal-file'); const canvas=t.querySelector('#pal-canvas'); const errEl=t.querySelector('#pal-error'); const output=t.querySelector('#pal-output'); function showErr(msg){ errEl.textContent=msg; errEl.style.display='block'; } function hideErr(){ errEl.textContent=''; errEl.style.display='none'; } function toHex(v){ return v.toString(16).padStart(2,'0'); } fileEl.addEventListener('change', function(){ hideErr(); const f=fileEl.files && fileEl.files[0]; if(!f){ return; } const url=URL.createObjectURL(f); const im=new Image(); im.onload=function(){ const scale=Math.min(1,100/Math.max(im.naturalWidth,im.naturalHeight)); canvas.width=Math.max(1,Math.round(im.naturalWidth*scale)); canvas.height=Math.max(1,Math.round(im.naturalHeight*scale)); const ctx=canvas.getContext('2d'); ctx.drawImage(im,0,0,canvas.width,canvas.height); let data; try{ data=ctx.getImageData(0,0,canvas.width,canvas.height).data; }catch(e){ showErr('This image could not be read (it may be blocked for security). Try another image.'); return; } const counts={}; for(let i=0;i<data.length;i+=16){ const a=data[i+3]; if(a<128){ continue; } const r=Math.min(255,Math.round(data[i]/16)*16); const g=Math.min(255,Math.round(data[i+1]/16)*16); const b=Math.min(255,Math.round(data[i+2]/16)*16); const key=r+','+g+','+b; counts[key]=(counts[key]||0)+1; } const sorted=Object.keys(counts).sort(function(x,y){ return counts[y]-counts[x]; }).slice(0,6); output.innerHTML=''; if(!sorted.length){ output.textContent='No colors found in this image.'; return; } sorted.forEach(function(key){ const parts=key.split(',').map(Number); const hex='#'+toHex(parts[0])+toHex(parts[1])+toHex(parts[2]); const wrap=document.createElement('div'); wrap.className='field'; wrap.style.cursor='pointer'; const sw=document.createElement('div'); sw.style.cssText='width:100%;height:44px;background:'+hex; const label=document.createElement('div'); label.textContent=hex+' — click to copy'; wrap.appendChild(sw); wrap.appendChild(label); wrap.addEventListener('click', function(){ copy(hex); }); output.appendChild(wrap); }); }; im.onerror=function(){ showErr('Could not load that image. Please try another file.'); }; im.src=url; }); }
@@ -1477,5 +1508,1175 @@ function slugGeneratorTool(t){toolShell(t,`<div class="field"><label class="labe
 function metaTagTool(t){toolShell(t,`<div class="field"><label class="label" for="mt-title">Page title <span class="file-meta" id="mt-title-count">0 / 60</span></label><input class="input" id="mt-title" placeholder="e.g. Best Running Shoes 2026 — Comfort &amp; Speed"></div><div class="field"><label class="label" for="mt-desc">Meta description <span class="file-meta" id="mt-desc-count">0 / 160</span></label><textarea class="textarea" id="mt-desc" style="min-height:80px" placeholder="A one or two sentence summary of the page that makes people click."></textarea></div><div class="row"><div class="field"><label class="label" for="mt-url">Page URL</label><input class="input" id="mt-url" placeholder="https://example.com/page"></div><div class="field"><label class="label" for="mt-image">Social image URL (optional)</label><input class="input" id="mt-image" placeholder="https://example.com/image.jpg"></div></div><div class="row"><div class="field"><label class="label" for="mt-robots">Robots</label><select class="select" id="mt-robots"><option value="index, follow" selected>index, follow — normal</option><option value="noindex, follow">noindex, follow — hide from search</option><option value="index, nofollow">index, nofollow</option><option value="noindex, nofollow">noindex, nofollow</option></select></div><div class="field"><label class="label" for="mt-card">Twitter card</label><select class="select" id="mt-card"><option value="summary_large_image" selected>summary_large_image</option><option value="summary">summary</option></select></div></div><div class="field"><label class="label" for="mt-out">Your meta tags — paste inside the &lt;head&gt; of your page</label><textarea class="textarea" id="mt-out" readonly style="min-height:210px"></textarea></div><div class="actions"><button class="btn primary" id="mt-copy">Copy meta tags</button></div>`,`Fill in the fields and the tags build themselves: title, description, canonical, robots, Open Graph for Facebook/LinkedIn and Twitter cards. Keep titles near 60 characters and descriptions near 160 so they are not cut off in search results.`,['robots-txt-generator','url-slug-generator','word-counter']);function run(){var title=$('#mt-title').value.trim(),desc=$('#mt-desc').value.trim(),url=$('#mt-url').value.trim(),img=$('#mt-image').value.trim();$('#mt-title-count').textContent=$('#mt-title').value.length+' / 60';$('#mt-desc-count').textContent=$('#mt-desc').value.length+' / 160';var L=[];L.push('<title>'+esc(title)+'</title>');if(desc)L.push('<meta name="description" content="'+esc(desc)+'">');if(url)L.push('<link rel="canonical" href="'+esc(url)+'">');L.push('<meta name="robots" content="'+$('#mt-robots').value+'">');L.push('<meta name="viewport" content="width=device-width, initial-scale=1">');if(title)L.push('<meta property="og:title" content="'+esc(title)+'">');if(desc)L.push('<meta property="og:description" content="'+esc(desc)+'">');L.push('<meta property="og:type" content="website">');if(url)L.push('<meta property="og:url" content="'+esc(url)+'">');if(img)L.push('<meta property="og:image" content="'+esc(img)+'">');L.push('<meta name="twitter:card" content="'+$('#mt-card').value+'">');if(title)L.push('<meta name="twitter:title" content="'+esc(title)+'">');if(desc)L.push('<meta name="twitter:description" content="'+esc(desc)+'">');if(img)L.push('<meta name="twitter:image" content="'+esc(img)+'">');$('#mt-out').value=L.join('\n')}['mt-title','mt-desc','mt-url','mt-image','mt-robots','mt-card'].forEach(function(id){$('#'+id).addEventListener('input',run);$('#'+id).addEventListener('change',run)});$('#mt-copy').onclick=function(){copy($('#mt-out').value)};run()}
 function robotsTxtTool(t){toolShell(t,`<div class="filter-row"><button class="filter-btn" id="rt-allow">Preset: Allow everything</button><button class="filter-btn" id="rt-block">Preset: Block everything</button></div><div class="field"><label class="label" for="rt-agent">User-agent</label><input class="input" id="rt-agent" value="*"></div><div class="row"><div class="field"><label class="label" for="rt-disallow">Disallow paths (one per line)</label><textarea class="textarea" id="rt-disallow" style="min-height:110px" placeholder="/admin/&#10;/private/"></textarea></div><div class="field"><label class="label" for="rt-allowpaths">Allow paths (one per line, optional)</label><textarea class="textarea" id="rt-allowpaths" style="min-height:110px" placeholder="/admin/public/"></textarea></div></div><div class="row"><div class="field"><label class="label" for="rt-sitemap">Sitemap URL (optional)</label><input class="input" id="rt-sitemap" placeholder="https://example.com/sitemap.xml"></div><div class="field"><label class="label" for="rt-delay">Crawl-delay seconds (optional)</label><input class="input" id="rt-delay" type="number" min="0" step="1" placeholder="e.g. 10"></div></div><div class="field"><label class="label" for="rt-out">Your robots.txt</label><textarea class="textarea" id="rt-out" readonly style="min-height:130px"></textarea></div><div class="actions"><button class="btn primary" id="rt-copy">Copy</button><button class="btn secondary" id="rt-download">Download robots.txt</button></div>`,`robots.txt tells search engine crawlers which parts of your site they may visit. Add your blocked paths, paste or download the file, and place it at the root of your site (your-domain.com/robots.txt). Remember: it guides well-behaved crawlers only — it is not a security lock.`,['meta-tag-generator','url-slug-generator','word-counter']);function lines(id){return $('#'+id).value.split(/\n/).map(function(s){return s.trim()}).filter(Boolean)}function run(){var L=['User-agent: '+($('#rt-agent').value.trim()||'*')];lines('rt-disallow').forEach(function(p){L.push('Disallow: '+(p.startsWith('/')?p:'/'+p))});lines('rt-allowpaths').forEach(function(p){L.push('Allow: '+(p.startsWith('/')?p:'/'+p))});if(!lines('rt-disallow').length&&!window.__rtBlockAll)L.push('Disallow:');var d=$('#rt-delay').value;if(d)L.push('Crawl-delay: '+d);var sm=$('#rt-sitemap').value.trim();if(sm){L.push('');L.push('Sitemap: '+sm)}$('#rt-out').value=L.join('\n')}['rt-agent','rt-disallow','rt-allowpaths','rt-sitemap','rt-delay'].forEach(function(id){$('#'+id).addEventListener('input',function(){window.__rtBlockAll=false;run()})});$('#rt-allow').onclick=function(){window.__rtBlockAll=false;$('#rt-disallow').value='';$('#rt-allowpaths').value='';run()};$('#rt-block').onclick=function(){window.__rtBlockAll=true;$('#rt-disallow').value='/';run()};$('#rt-copy').onclick=function(){copy($('#rt-out').value)};$('#rt-download').onclick=function(){downloadText($('#rt-out').value,'robots.txt')};run()}
 
+
+function resumeBuilder(t){
+  toolShell(t, `<style>.resume-preview{border:1px solid var(--line);border-radius:12px;padding:20px;background:var(--bg);margin-top:20px;overflow-wrap:anywhere}.resume-preview h3{margin:0 0 2px;font-size:24px}.resume-preview .resume-role{color:var(--muted);margin:0 0 8px}.resume-preview h4{margin:16px 0 6px;font-size:15px;text-transform:uppercase;letter-spacing:.04em}.resume-preview p,.resume-preview li{font-size:15px;line-height:1.6}.resume-preview ul{margin:4px 0;padding-left:20px}@media print { header.site-header, footer.site-footer, .tool-side, .actions, .breadcrumb, .tool-lead, .tool-page-title, .resume-form { display:none !important; } .tool-layout{display:block} }</style><div class="resume-form"><div class="field"><label class="label" for="resume-name">Full name</label><input class="input" id="resume-name" type="text" placeholder="e.g. Ayesha Khan"></div><div class="field"><label class="label" for="resume-title">Job title</label><input class="input" id="resume-title" type="text" placeholder="e.g. Primary School Teacher"></div><div class="field"><label class="label" for="resume-email">Email</label><input class="input" id="resume-email" type="email" placeholder="e.g. ayesha@example.com"></div><div class="field"><label class="label" for="resume-phone">Phone</label><input class="input" id="resume-phone" type="tel" placeholder="e.g. 0300 1234567"></div><div class="field"><label class="label" for="resume-city">City</label><input class="input" id="resume-city" type="text" placeholder="e.g. Lahore"></div><div class="field"><label class="label" for="resume-summary">Professional summary</label><textarea class="textarea" id="resume-summary" placeholder="A short summary of your experience and strengths."></textarea></div><div class="field"><label class="label" for="resume-experience">Work experience (one role per line, format: Job title — Company, years)</label><textarea class="textarea" id="resume-experience" placeholder="Teacher — City School, 2021–2024"></textarea></div><div class="field"><label class="label" for="resume-education">Education (one per line)</label><textarea class="textarea" id="resume-education" placeholder="BSc Education — University, 2020"></textarea></div><div class="field"><label class="label" for="resume-skills">Skills (comma-separated)</label><input class="input" id="resume-skills" type="text" placeholder="e.g. Lesson planning, Classroom management, Urdu, English"></div></div><div class="actions"><button class="btn primary" id="resume-print" type="button">Print / Save as PDF</button><button class="btn secondary" id="resume-copy" type="button">Copy resume text</button><button class="btn secondary" id="resume-clear" type="button">Clear</button></div><div class="resume-preview" id="resume-preview"></div>`, `Fill in the form and check the live preview below it. Nothing leaves the browser. Check the preview before printing, then use Print / Save as PDF and choose Save as PDF in your browser print dialog.`, []);
+  function val(id){ return $(id).value; }
+  function lines(id){ return val(id).split('\n').map(function(s){ return s.trim(); }).filter(function(s){ return s.length > 0; }); }
+  function skillsList(){ return val('#resume-skills').split(',').map(function(s){ return s.trim(); }).filter(function(s){ return s.length > 0; }); }
+  function contactLine(){
+    var parts = [val('#resume-email'), val('#resume-phone'), val('#resume-city')].map(function(s){ return s.trim(); }).filter(function(s){ return s.length > 0; });
+    return parts.join(' · ');
+  }
+  function renderPreview(){
+    var name = val('#resume-name').trim();
+    var title = val('#resume-title').trim();
+    var summary = val('#resume-summary').trim();
+    var exp = lines('#resume-experience');
+    var edu = lines('#resume-education');
+    var skills = skillsList();
+    var contact = contactLine();
+    if (!name && !title && !summary && exp.length === 0 && edu.length === 0 && skills.length === 0 && !contact) {
+      $('#resume-preview').innerHTML = '<p style="color:var(--muted)">Your resume preview will appear here as you fill in the form.</p>';
+      return;
+    }
+    var html = '';
+    if (name) { html += '<h3>' + esc(name) + '</h3>'; }
+    if (title) { html += '<p class="resume-role">' + esc(title) + '</p>'; }
+    if (contact) { html += '<p>' + esc(contact) + '</p>'; }
+    if (summary) { html += '<h4>Summary</h4><p>' + esc(summary) + '</p>'; }
+    if (exp.length) { html += '<h4>Work Experience</h4><ul>' + exp.map(function(l){ return '<li>' + esc(l) + '</li>'; }).join('') + '</ul>'; }
+    if (edu.length) { html += '<h4>Education</h4><ul>' + edu.map(function(l){ return '<li>' + esc(l) + '</li>'; }).join('') + '</ul>'; }
+    if (skills.length) { html += '<h4>Skills</h4><p>' + skills.map(function(s){ return esc(s); }).join(' · ') + '</p>'; }
+    $('#resume-preview').innerHTML = html;
+  }
+  function resumeText(){
+    var out = [];
+    var name = val('#resume-name').trim();
+    var title = val('#resume-title').trim();
+    var contact = contactLine();
+    var summary = val('#resume-summary').trim();
+    var exp = lines('#resume-experience');
+    var edu = lines('#resume-education');
+    var skills = skillsList();
+    if (name) { out.push(name); }
+    if (title) { out.push(title); }
+    if (contact) { out.push(contact); }
+    if (summary) { out.push('', 'Summary', summary); }
+    if (exp.length) { out.push('', 'Work Experience'); exp.forEach(function(l){ out.push('- ' + l); }); }
+    if (edu.length) { out.push('', 'Education'); edu.forEach(function(l){ out.push('- ' + l); }); }
+    if (skills.length) { out.push('', 'Skills', skills.join(', ')); }
+    return out.join('\n');
+  }
+  ['#resume-name', '#resume-title', '#resume-email', '#resume-phone', '#resume-city', '#resume-summary', '#resume-experience', '#resume-education', '#resume-skills'].forEach(function(id){
+    $(id).addEventListener('input', renderPreview);
+  });
+  renderPreview();
+  $('#resume-print').addEventListener('click', function(){ window.print(); });
+  $('#resume-copy').addEventListener('click', function(){ copy(resumeText()); });
+  $('#resume-clear').addEventListener('click', function(){
+    ['#resume-name', '#resume-title', '#resume-email', '#resume-phone', '#resume-city', '#resume-summary', '#resume-experience', '#resume-education', '#resume-skills'].forEach(function(id){ $(id).value = ''; });
+    renderPreview();
+    toast('Form cleared.');
+  });
+}
+function sipCalc(t){
+  toolShell(t, `<div class="field"><label class="label" for="sip-monthly">Monthly investment</label><input class="input" id="sip-monthly" type="number" min="0" step="any" placeholder="e.g. 1000"></div><div class="field"><label class="label" for="sip-return">Expected annual return (%)</label><input class="input" id="sip-return" type="number" min="0" step="any" placeholder="e.g. 12"></div><div class="field"><label class="label" for="sip-years">Years</label><input class="input" id="sip-years" type="number" min="0" step="any" placeholder="e.g. 10"></div><div class="actions"><button class="btn primary" id="sip-btn" type="button">Calculate estimate</button></div><div class="result" id="sip-result"><p>Enter your values and tap Calculate estimate.</p></div>`, `Enter your monthly investment, the expected annual return and the number of years. All results are estimates, not guarantees: actual returns vary.`, []);
+  $('#sip-btn').addEventListener('click', function(){
+    var res = $('#sip-result');
+    var p = parseFloat($('#sip-monthly').value);
+    var r = parseFloat($('#sip-return').value);
+    var years = parseFloat($('#sip-years').value);
+    if (!isFinite(p) || !isFinite(r) || !isFinite(years) || p <= 0 || r < 0 || years <= 0 || years > 50) {
+      res.innerHTML = '<div class="error">Please enter a positive monthly investment, an expected return of 0 or more, and years between 0 and 50.</div>';
+      return;
+    }
+    var i = r / 12 / 100;
+    var n = Math.round(years * 12);
+    function valueAt(m){
+      if (i === 0) { return p * m; }
+      return p * ((Math.pow(1 + i, m) - 1) / i) * (1 + i);
+    }
+    var fv = valueAt(n);
+    var invested = p * n;
+    var gains = fv - invested;
+    function money(v){ return fmt(Math.round(v * 100) / 100); }
+    var rows = '';
+    var bars = '';
+    var yearCount = Math.ceil(years);
+    var maxVal = fv > 0 ? fv : 1;
+    for (var y = 1; y <= yearCount; y++) {
+      var m = Math.min(y * 12, n);
+      var v = valueAt(m);
+      var inv = p * m;
+      var pct = Math.max(0, Math.min(100, v / maxVal * 100));
+      rows += '<tr><td>Year ' + y + '</td><td>' + money(inv) + '</td><td>' + money(v) + '</td></tr>';
+      bars += '<div style="display:flex;align-items:center;gap:10px;margin:6px 0"><span style="min-width:56px;font-size:14px">Year ' + y + '</span><div style="background:var(--brand);height:10px;border-radius:5px;width:' + pct.toFixed(1) + '%"></div><span style="font-size:14px">' + money(v) + '</span></div>';
+    }
+    res.innerHTML = '<div class="metric-grid">' + metric('Estimated future value', money(fv)) + metric('Total invested (estimate)', money(invested)) + metric('Estimated gains', money(gains)) + '</div><p style="margin-top:14px">These are estimates based on a steady monthly investment and a steady return. Actual returns vary.</p><h3 style="margin-top:18px">Year-by-year estimate</h3><div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:15px"><thead><tr><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">Year</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">Invested</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)">Estimated value</th></tr></thead><tbody>' + rows + '</tbody></table></div><h3 style="margin-top:18px">Growth</h3>' + bars;
+  });
+}
+function zakatCalc(t){
+  toolShell(t, `<div class="field"><label class="label" for="zakat-cash">Cash (bank + in hand)</label><input class="input" id="zakat-cash" type="number" min="0" step="any" placeholder="e.g. 500"></div><div class="field"><label class="label" for="zakat-gold">Gold value</label><input class="input" id="zakat-gold" type="number" min="0" step="any" placeholder="e.g. 800"></div><div class="field"><label class="label" for="zakat-silver">Silver value</label><input class="input" id="zakat-silver" type="number" min="0" step="any" placeholder="e.g. 50"></div><div class="field"><label class="label" for="zakat-business">Business assets / stock value</label><input class="input" id="zakat-business" type="number" min="0" step="any" placeholder="e.g. 200"></div><div class="field"><label class="label" for="zakat-owed">Money owed to you</label><input class="input" id="zakat-owed" type="number" min="0" step="any" placeholder="e.g. 100"></div><div class="field"><label class="label" for="zakat-liabilities">Liabilities / debts</label><input class="input" id="zakat-liabilities" type="number" min="0" step="any" placeholder="e.g. 150"></div><div class="field"><label class="label" for="zakat-nisab">Nisab threshold</label><input class="input" id="zakat-nisab" type="number" min="0" step="any" placeholder="Enter your nisab value"></div><div class="actions"><button class="btn primary" id="zakat-btn" type="button">Calculate Zakat</button></div><div class="result" id="zakat-result"><p>Enter your values and tap Calculate Zakat.</p></div>`, `Enter the values of your assets and debts, then enter your nisab threshold. This is an educational estimate only — consult a scholar for rulings. Your values stay in the browser and are not uploaded.`, []);
+  function numOrZero(id){
+    var raw = $(id).value.trim();
+    if (raw === '') { return 0; }
+    return parseFloat(raw);
+  }
+  $('#zakat-btn').addEventListener('click', function(){
+    var res = $('#zakat-result');
+    var ids = ['#zakat-cash', '#zakat-gold', '#zakat-silver', '#zakat-business', '#zakat-owed', '#zakat-liabilities'];
+    for (var k = 0; k < ids.length; k++) {
+      var v = numOrZero(ids[k]);
+      if (!isFinite(v) || v < 0) {
+        res.innerHTML = '<div class="error">Please enter 0 or more for each asset and debt field. Leave a field empty if it does not apply.</div>';
+        return;
+      }
+    }
+    var totalAssets = numOrZero('#zakat-cash') + numOrZero('#zakat-gold') + numOrZero('#zakat-silver') + numOrZero('#zakat-business') + numOrZero('#zakat-owed');
+    var liabilities = numOrZero('#zakat-liabilities');
+    var wealth = totalAssets - liabilities;
+    function money(v){ return fmt(Math.round(v * 100) / 100); }
+    var nisabRaw = $('#zakat-nisab').value.trim();
+    var nisab = nisabRaw === '' ? NaN : parseFloat(nisabRaw);
+    if (!isFinite(nisab) || nisab <= 0) {
+      res.innerHTML = '<div class="metric-grid">' + metric('Net zakatable wealth', money(wealth)) + metric('Nisab threshold', 'Not entered') + metric('Zakat due', 'Not determined') + '</div><p style="margin-top:14px">Please enter your nisab threshold to see whether Zakat is due. Your net zakatable wealth is shown above. No nisab value is prefilled and no live gold or silver price is used. This is an educational estimate only — consult a scholar for rulings.</p>';
+      return;
+    }
+    var zakat = wealth >= nisab ? wealth * 0.025 : 0;
+    var note = wealth >= nisab
+      ? 'Your net zakatable wealth is at or above the nisab you entered, so Zakat due is 2.5% of net zakatable wealth. This is an educational estimate only — consult a scholar for rulings.'
+      : 'Your net zakatable wealth is below the nisab you entered, so Zakat due is 0. This is an educational estimate only — consult a scholar for rulings.';
+    res.innerHTML = '<div class="metric-grid">' + metric('Net zakatable wealth', money(wealth)) + metric('Nisab threshold', money(nisab)) + metric('Zakat due (2.5%)', money(zakat)) + '</div><p style="margin-top:14px">' + esc(note) + '</p>';
+  });
+}
+function gstCalc(t){
+  toolShell(t, `<div class="field"><label class="label" for="gst-amount">Amount</label><input class="input" id="gst-amount" type="number" min="0" step="any" placeholder="e.g. 1000"></div><div class="field"><label class="label" for="gst-rate">Tax rate (%)</label><select class="select" id="gst-rate"><option value="0">0%</option><option value="5">5%</option><option value="12">12%</option><option value="18" selected>18%</option><option value="28">28%</option><option value="custom">Custom rate</option></select></div><div class="field" id="gst-custom-wrap" style="display:none"><label class="label" for="gst-custom-rate">Custom rate (%)</label><input class="input" id="gst-custom-rate" type="number" min="0" max="100" step="any" placeholder="e.g. 15"></div><div class="field"><label class="label" for="gst-mode">Mode</label><select class="select" id="gst-mode"><option value="add">Add tax (exclusive &rarr; inclusive)</option><option value="remove">Remove tax (inclusive &rarr; exclusive)</option></select></div><div class="actions"><button class="btn primary" id="gst-btn" type="button">Calculate tax</button></div><div class="result" id="gst-result"><p>Enter an amount and a rate, then tap Calculate tax.</p></div>`, `Enter an amount, choose a tax rate and choose whether to add tax or remove it. Arithmetic only — rates vary by country, so check your local rate.`, []);
+  $('#gst-rate').addEventListener('change', function(){
+    $('#gst-custom-wrap').style.display = ($('#gst-rate').value === 'custom') ? 'block' : 'none';
+  });
+  $('#gst-btn').addEventListener('click', function(){
+    var res = $('#gst-result');
+    var amount = parseFloat($('#gst-amount').value);
+    var rate;
+    if ($('#gst-rate').value === 'custom') {
+      rate = parseFloat($('#gst-custom-rate').value);
+    } else {
+      rate = parseFloat($('#gst-rate').value);
+    }
+    if (!isFinite(amount) || amount < 0 || !isFinite(rate) || rate < 0 || rate > 100) {
+      res.innerHTML = '<div class="error">Please enter an amount of 0 or more and a tax rate between 0 and 100.</div>';
+      return;
+    }
+    function money(v){ return fmt(Math.round(v * 100) / 100); }
+    var mode = $('#gst-mode').value;
+    var tax, exclusive, total;
+    if (mode === 'add') {
+      exclusive = amount;
+      tax = amount * rate / 100;
+      total = amount + tax;
+      res.innerHTML = '<div class="metric-grid">' + metric('Amount before tax', money(exclusive)) + metric('Tax amount', money(tax)) + metric('Total including tax', money(total)) + '</div><p style="margin-top:14px">Tax added at ' + rate + '%. Arithmetic only — rates vary by country, so check your local rate.</p>';
+    } else {
+      total = amount;
+      exclusive = amount / (1 + rate / 100);
+      tax = amount - exclusive;
+      res.innerHTML = '<div class="metric-grid">' + metric('Total including tax', money(total)) + metric('Tax amount', money(tax)) + metric('Amount before tax', money(exclusive)) + '</div><p style="margin-top:14px">Tax removed at ' + rate + '%. Arithmetic only — rates vary by country, so check your local rate.</p>';
+    }
+  });
+}
+function typingTest(t){
+  window.__toolToken = (window.__toolToken || 0) + 1;
+  var myToken = window.__toolToken;
+  var enPassages = [
+    'Every morning, Maya walks to the small market near her home. She buys fresh bread, milk, and fruit for breakfast. On the way back, she greets her neighbours and stops to talk with the baker. The streets are quiet, the air is cool, and the day feels full of promise before work begins.',
+    'Learning to cook at home can save money and bring people together. Start with simple meals, follow the recipe step by step, and taste the food as you go. Wash your hands, keep the table clean, and put each ingredient back after you use it. Soon, cooking becomes a calm habit that everyone enjoys.',
+    'A garden needs water, sunlight, and care to grow well. Tomatoes need warm days, lettuce likes cooler shade, and herbs grow best in small pots near a window. Check the soil with your finger before watering, pull out weeds each week, and watch for leaves. Slow, steady care turns seeds into food for the table.'
+  ];
+  var urPassages = [
+    'صبح سویرے سورج نکلتا ہے اور پرندے چہچہاتے ہیں۔ ہوا ٹھنڈی ہوتی ہے اور لوگ اپنے کام پر جاتے ہیں۔',
+    'کتاب پڑھنا ایک اچھی عادت ہے جو علم میں اضافہ کرتی ہے۔ روزانہ تھوڑا وقت نکال کر پڑھنا چاہیے۔'
+  ];
+  toolShell(t, `<div class="field"><label class="label" for="typing-language">Language</label><select class="select" id="typing-language"><option value="en">English</option><option value="ur">Urdu</option></select></div><div class="result" id="typing-passage" dir="auto" style="white-space:pre-wrap;line-height:1.9;font-size:18px"></div><div class="field"><label class="label" for="typing-input">Type here</label><textarea class="textarea" id="typing-input" disabled placeholder="Press Start, then type the passage here."></textarea></div><div class="result"><div class="result-big" id="typing-timer">60</div><div id="typing-status">Press Start to begin. The 60-second timer starts on your first keystroke.</div></div><div class="actions"><button class="btn primary" id="typing-start" type="button">Start</button><button class="btn secondary" id="typing-restart" type="button">Restart</button></div><div class="result" id="typing-result"><p>Type the passage to see your live WPM and accuracy.</p></div>`, `Choose English or Urdu, press Start, then type the passage exactly as shown. The 60-second timer starts on your first keystroke. Your score compares what you typed with the passage, character by character.`, []);
+  var passage = '';
+  var armed = false;
+  var started = false;
+  var finished = false;
+  var startAt = 0;
+  var iv = null;
+  function stats(typed, elapsedSec){
+    var correct = 0;
+    var limit = Math.min(typed.length, passage.length);
+    for (var k = 0; k < limit; k++) {
+      if (typed.charAt(k) === passage.charAt(k)) { correct++; }
+    }
+    var accuracy = typed.length > 0 ? (correct / typed.length) * 100 : 0;
+    var minutes = elapsedSec / 60;
+    var wpm = minutes > 0 ? (correct / 5) / minutes : 0;
+    return { correct: correct, total: typed.length, accuracy: accuracy, wpm: wpm };
+  }
+  function showStats(typed, elapsedSec, finalFlag){
+    var s = stats(typed, elapsedSec);
+    $('#typing-result').innerHTML = '<div class="metric-grid">' + metric('WPM', s.wpm.toFixed(1)) + metric('Accuracy', s.accuracy.toFixed(1) + '%') + metric('Correct characters', fmt(s.correct) + ' of ' + fmt(s.total)) + '</div>' + (finalFlag ? '<p style="margin-top:14px">Final result for the 60-second test.</p>' : '<p style="margin-top:14px">Live result — it updates as you type.</p>');
+  }
+  function renderPassage(typed){
+    var html = '';
+    for (var k = 0; k < passage.length; k++) {
+      var ch = passage.charAt(k);
+      var disp = ch === ' ' ? '&nbsp;' : esc(ch);
+      if (k < typed.length) {
+        if (typed.charAt(k) === ch) {
+          html += '<span style="color:#0E9F6E">' + disp + '</span>';
+        } else {
+          html += '<span style="color:#D92D20;background:rgba(217,45,32,.12)">' + disp + '</span>';
+        }
+      } else if (k === typed.length) {
+        html += '<span style="border-bottom:2px solid var(--brand)">' + disp + '</span>';
+      } else {
+        html += '<span>' + disp + '</span>';
+      }
+    }
+    $('#typing-passage').innerHTML = html;
+  }
+  function pickPassage(){
+    var list = $('#typing-language').value === 'ur' ? urPassages : enPassages;
+    passage = list[Math.floor(Math.random() * list.length)];
+  }
+  function resetState(){
+    if (iv) { clearInterval(iv); iv = null; }
+    armed = false;
+    started = false;
+    finished = false;
+    $('#typing-input').value = '';
+    $('#typing-input').disabled = true;
+    $('#typing-timer').textContent = '60';
+    $('#typing-result').innerHTML = '<p>Type the passage to see your live WPM and accuracy.</p>';
+  }
+  function finish(){
+    if (finished) { return; }
+    finished = true;
+    armed = false;
+    if (iv) { clearInterval(iv); iv = null; }
+    $('#typing-input').disabled = true;
+    $('#typing-timer').textContent = '0';
+    $('#typing-status').textContent = 'Time is up. Here is your final result.';
+    showStats($('#typing-input').value, 60, true);
+  }
+  function startTimer(){
+    startAt = Date.now();
+    iv = setInterval(function(){
+      if (myToken !== window.__toolToken) { clearInterval(iv); return; }
+      var elapsed = (Date.now() - startAt) / 1000;
+      var remaining = Math.max(0, 60 - elapsed);
+      $('#typing-timer').textContent = String(Math.ceil(remaining));
+      if (elapsed >= 60) { finish(); return; }
+      showStats($('#typing-input').value, elapsed, false);
+    }, 250);
+  }
+  function armTest(){
+    resetState();
+    armed = true;
+    $('#typing-input').disabled = false;
+    $('#typing-input').focus();
+    $('#typing-status').textContent = 'Type the passage. The 60-second timer starts on your first keystroke.';
+    renderPassage('');
+  }
+  $('#typing-language').addEventListener('change', function(){
+    pickPassage();
+    resetState();
+    $('#typing-status').textContent = 'Press Start to begin. The 60-second timer starts on your first keystroke.';
+    renderPassage('');
+  });
+  $('#typing-start').addEventListener('click', function(){
+    if (started && !finished) { return; }
+    armTest();
+  });
+  $('#typing-restart').addEventListener('click', function(){
+    pickPassage();
+    armTest();
+    $('#typing-status').textContent = 'New passage loaded. Type to start the 60-second timer.';
+  });
+  $('#typing-input').addEventListener('input', function(){
+    if (!armed || finished) { return; }
+    var typed = $('#typing-input').value;
+    if (!started) {
+      started = true;
+      startTimer();
+    }
+    var elapsed = started ? (Date.now() - startAt) / 1000 : 0;
+    renderPassage(typed);
+    showStats(typed, elapsed, false);
+  });
+  pickPassage();
+  renderPassage('');
+}
+function passportPhotoTool(t){
+  toolShell(t, uploadUI('passport', 'Drop a photo here or choose a file') + `<div id="passport-work" hidden><img class="preview" id="passport-preview" alt="Uploaded photo preview"><div class="file-meta" id="passport-meta"></div><div class="field" style="margin-top:18px"><label class="label" for="passport-preset">Photo size</label><select class="select" id="passport-preset"><option value="413x531">Passport 35 x 45 mm (413 x 531 px at 300 dpi)</option><option value="600x600">US 2 x 2 in (600 x 600 px)</option><option value="200x250">Exam small (200 x 250 px)</option></select></div><div class="field"><label class="label" for="passport-target">Target file size</label><select class="select" id="passport-target"><option value="20">20 KB</option><option value="30" selected>30 KB</option><option value="50">50 KB</option><option value="0">No limit (quality 92)</option></select></div><div class="actions"><button class="btn primary" id="passport-run" type="button">Resize and compress</button><button class="btn secondary" id="passport-download" type="button" disabled>Download JPG</button></div><div class="loading" id="passport-loading"><span class="spinner"></span> Resizing photo…</div><img class="preview" id="passport-output" alt="Resized photo preview" hidden><div class="result" id="passport-result" hidden></div></div>`, `Upload a photo, choose a size and a target file size, then resize and download the JPG. Processing runs in your browser. If a target cannot be reached, the tool shrinks the photo in steps and reports the honest final size.`, []);
+  var state = null;
+  var lastUrl = null;
+  function canvasBlob(canvas, q){
+    return new Promise(function(resolve){
+      canvas.toBlob(function(b){ resolve(b); }, 'image/jpeg', q);
+    });
+  }
+  bindImageUpload('passport', function(x){
+    state = x;
+    $('#passport-preview').src = x.url;
+    $('#passport-meta').textContent = x.file.name + ' · ' + x.img.width + ' × ' + x.img.height + ' · ' + bytes(x.file.size);
+    $('#passport-work').hidden = false;
+    $('#passport-result').hidden = true;
+    $('#passport-output').hidden = true;
+    $('#passport-download').disabled = true;
+  });
+  $('#passport-run').addEventListener('click', function(){
+    if (!state) {
+      $('#err-passport').innerHTML = '<div class="error">Please upload a photo first.</div>';
+      return;
+    }
+    var dims = $('#passport-preset').value.split('x');
+    var baseW = parseInt(dims[0], 10);
+    var baseH = parseInt(dims[1], 10);
+    var targetKB = parseInt($('#passport-target').value, 10);
+    var targetBytes = targetKB * 1024;
+    $('#passport-loading').classList.add('show');
+    $('#passport-result').hidden = true;
+    $('#passport-download').disabled = true;
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
+    var best = null;
+    var bestW = baseW;
+    var bestH = baseH;
+    var fallback = null;
+    var fallbackW = baseW;
+    var fallbackH = baseH;
+    var step = 0;
+    function runStep(){
+      if (step > 4) {
+        finishRun();
+        return;
+      }
+      var scale = Math.pow(0.9, step);
+      var w = Math.max(1, Math.round(baseW * scale));
+      var h = Math.max(1, Math.round(baseH * scale));
+      canvas.width = w;
+      canvas.height = h;
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, w, h);
+      ctx.drawImage(state.img, 0, 0, w, h);
+      if (targetBytes === 0) {
+        canvasBlob(canvas, 0.92).then(function(b){
+          best = b;
+          bestW = w;
+          bestH = h;
+          finishRun();
+        });
+        return;
+      }
+      var lo = 0.30;
+      var hi = 0.95;
+      var stepBest = null;
+      var k = 0;
+      function tryQuality(){
+        if (k >= 8) {
+          if (stepBest) {
+            best = stepBest;
+            bestW = w;
+            bestH = h;
+            finishRun();
+          } else {
+            step++;
+            runStep();
+          }
+          return;
+        }
+        var mid = (lo + hi) / 2;
+        k++;
+        canvasBlob(canvas, mid).then(function(b){
+          if (!b) {
+            step++;
+            runStep();
+            return;
+          }
+          fallback = b;
+          fallbackW = w;
+          fallbackH = h;
+          if (b.size <= targetBytes) {
+            stepBest = b;
+            lo = mid;
+          } else {
+            hi = mid;
+          }
+          tryQuality();
+        });
+      }
+      tryQuality();
+    }
+    function finishRun(){
+      $('#passport-loading').classList.remove('show');
+      var met = false;
+      var blob = best;
+      if (!blob) {
+        blob = fallback;
+        bestW = fallbackW;
+        bestH = fallbackH;
+      } else if (targetBytes > 0 && blob.size <= targetBytes) {
+        met = true;
+      } else if (targetBytes === 0) {
+        met = true;
+      }
+      if (!blob) {
+        $('#passport-result').innerHTML = '<div class="error">This photo could not be converted to JPG in this browser. Please try another photo.</div>';
+        $('#passport-result').hidden = false;
+        return;
+      }
+      if (lastUrl) { URL.revokeObjectURL(lastUrl); }
+      lastUrl = URL.createObjectURL(blob);
+      $('#passport-output').src = lastUrl;
+      $('#passport-output').hidden = false;
+      var targetText = targetBytes === 0 ? 'No size limit selected (quality 92).' : (met ? 'Target met: at or below ' + targetKB + ' KB.' : 'Target not met: the photo stayed above ' + targetKB + ' KB even after shrinking in steps. The honest final size is shown.');
+      $('#passport-result').innerHTML = '<h3>Photo ready</h3><div class="metric-grid">' + metric('Output dimensions', bestW + ' × ' + bestH + ' px') + metric('Actual file size', bytes(blob.size)) + metric('Target', targetBytes === 0 ? 'No limit' : targetKB + ' KB') + '</div><p style="margin-top:14px">' + esc(targetText) + '</p>';
+      $('#passport-result').hidden = false;
+      $('#passport-download').disabled = false;
+      $('#passport-download').onclick = function(){
+        download(lastUrl, safeName(state.file.name, '.jpg'));
+      };
+    }
+    runStep();
+  });
+}
+function clickSpeedTest(t){
+  window.__toolToken = (window.__toolToken || 0) + 1;
+  var myToken = window.__toolToken;
+  toolShell(t, `<div class="result"><div class="result-big" id="click-timer">10</div><div id="click-count">Clicks: 0</div><div id="click-status">Press Start, then click the button below as fast as you can.</div></div><div class="field" style="margin-top:18px"><button class="btn primary" id="click-area" type="button" style="width:100%;min-height:130px;font-size:22px">Click here!</button></div><div class="actions"><button class="btn primary" id="click-start" type="button">Start</button><button class="btn secondary" id="click-restart" type="button">Restart</button></div><div class="result" id="click-result"><p>Your clicks-per-second score will appear here when the 10 seconds end.</p></div>`, `Press Start, then click the big button as fast as you can for 10 seconds. Clicks before you press Start and after time ends do not count.`, []);
+  var running = false;
+  var clicks = 0;
+  var iv = null;
+  var endAt = 0;
+  function rating(cps){
+    if (cps < 4) { return 'Steady'; }
+    if (cps < 6) { return 'Quick'; }
+    if (cps < 8) { return 'Very fast'; }
+    return 'Lightning';
+  }
+  function finish(){
+    running = false;
+    if (iv) { clearInterval(iv); iv = null; }
+    $('#click-timer').textContent = '0';
+    var cps = clicks / 10;
+    $('#click-status').textContent = 'Time is up.';
+    $('#click-result').innerHTML = '<div class="metric-grid">' + metric('Clicks', fmt(clicks)) + metric('Clicks per second', cps.toFixed(1)) + metric('Rating', rating(cps)) + '</div><p style="margin-top:14px">You clicked ' + clicks + ' times in 10 seconds, which is ' + cps.toFixed(1) + ' clicks per second. Rating labels are playful, not a measurement standard.</p>';
+  }
+  $('#click-start').addEventListener('click', function(){
+    if (iv) { clearInterval(iv); iv = null; }
+    running = true;
+    clicks = 0;
+    endAt = Date.now() + 10000;
+    $('#click-count').textContent = 'Clicks: 0';
+    $('#click-timer').textContent = '10';
+    $('#click-status').textContent = 'Go! Click as fast as you can.';
+    $('#click-result').innerHTML = '<p>Clicking… your score will appear when the 10 seconds end.</p>';
+    iv = setInterval(function(){
+      if (myToken !== window.__toolToken) { clearInterval(iv); return; }
+      var remaining = endAt - Date.now();
+      $('#click-timer').textContent = String(Math.max(0, Math.ceil(remaining / 1000)));
+      if (remaining <= 0) { finish(); }
+    }, 100);
+  });
+  $('#click-area').addEventListener('click', function(){
+    if (!running) { return; }
+    clicks++;
+    $('#click-count').textContent = 'Clicks: ' + clicks;
+  });
+  $('#click-restart').addEventListener('click', function(){
+    if (iv) { clearInterval(iv); iv = null; }
+    running = false;
+    clicks = 0;
+    $('#click-count').textContent = 'Clicks: 0';
+    $('#click-timer').textContent = '10';
+    $('#click-status').textContent = 'Press Start, then click the button below as fast as you can.';
+    $('#click-result').innerHTML = '<p>Your clicks-per-second score will appear here when the 10 seconds end.</p>';
+  });
+}
+function reactionTest(t){
+  window.__toolToken = (window.__toolToken || 0) + 1;
+  var myToken = window.__toolToken;
+  toolShell(t, `<div class="field"><button class="btn secondary" id="reaction-area" type="button" style="width:100%;min-height:150px;font-size:22px;background:var(--panel2)">Press Start, then tap here when it turns green</button></div><div class="result"><div id="reaction-status">Press Start to begin round 1 of 5.</div></div><div class="actions"><button class="btn primary" id="reaction-start" type="button">Start</button></div><div class="result" id="reaction-rounds"><p>No rounds yet.</p></div><div class="result" id="reaction-result" hidden></div>`, `Press Start and wait while the area is red. Tap it as soon as it turns green. Tapping too early voids the round, so you retry it. After 5 rounds you get your average and best time.`, []);
+  var state = 'idle';
+  var timeoutId = null;
+  var readyAt = 0;
+  var rounds = [];
+  var roundNo = 0;
+  function setArea(text, bg){
+    var area = $('#reaction-area');
+    area.textContent = text;
+    area.style.background = bg;
+    area.style.color = '#ffffff';
+  }
+  function renderRounds(){
+    if (rounds.length === 0) {
+      $('#reaction-rounds').innerHTML = '<p>No rounds yet.</p>';
+      return;
+    }
+    var html = '<h3>Rounds</h3><ul style="margin:0;padding-left:20px">';
+    for (var k = 0; k < rounds.length; k++) {
+      html += '<li>Round ' + (k + 1) + ': ' + rounds[k] + ' ms</li>';
+    }
+    html += '</ul>';
+    $('#reaction-rounds').innerHTML = html;
+  }
+  function beginRound(){
+    state = 'waiting';
+    roundNo++;
+    $('#reaction-status').textContent = 'Round ' + roundNo + ' of 5 — wait for green. Do not tap yet.';
+    setArea('Wait for green…', '#D92D20');
+    var delay = 1000 + Math.random() * 3000;
+    timeoutId = setTimeout(function(){
+      if (myToken !== window.__toolToken) { return; }
+      if (state !== 'waiting') { return; }
+      state = 'ready';
+      readyAt = performance.now();
+      setArea('Tap now!', '#0E9F6E');
+      $('#reaction-status').textContent = 'Tap the green area now!';
+    }, delay);
+  }
+  function showSummary(){
+    var sum = 0;
+    var best = rounds[0];
+    for (var k = 0; k < rounds.length; k++) {
+      sum += rounds[k];
+      if (rounds[k] < best) { best = rounds[k]; }
+    }
+    var avg = Math.round(sum / rounds.length);
+    $('#reaction-result').innerHTML = '<div class="metric-grid">' + metric('Average', avg + ' ms') + metric('Best', best + ' ms') + metric('Rounds', fmt(rounds.length)) + '</div><p style="margin-top:14px">Average reaction time ' + avg + ' ms and best ' + best + ' ms across 5 rounds. Results depend on your device, screen and input, so they are not a laboratory measurement.</p>';
+    $('#reaction-result').hidden = false;
+  }
+  $('#reaction-start').addEventListener('click', function(){
+    if (state === 'waiting' || state === 'ready') { return; }
+    if (timeoutId) { clearTimeout(timeoutId); timeoutId = null; }
+    rounds = [];
+    roundNo = 0;
+    renderRounds();
+    $('#reaction-result').hidden = true;
+    $('#reaction-result').innerHTML = '';
+    beginRound();
+  });
+  $('#reaction-area').addEventListener('click', function(){
+    if (state === 'waiting') {
+      if (timeoutId) { clearTimeout(timeoutId); timeoutId = null; }
+      state = 'idle';
+      roundNo--;
+      $('#reaction-status').textContent = 'Too early! That round does not count. Press Start to retry the round.';
+      setArea('Too early — press Start to retry', '#D92D20');
+      return;
+    }
+    if (state === 'ready') {
+      var ms = Math.round(performance.now() - readyAt);
+      rounds.push(ms);
+      renderRounds();
+      if (rounds.length >= 5) {
+        state = 'idle';
+        $('#reaction-status').textContent = 'Test complete. Your result: ' + ms + ' ms for the last round.';
+        setArea('Done — press Start for a new test', '#0E1526');
+        showSummary();
+        return;
+      }
+      state = 'between';
+      $('#reaction-status').textContent = 'Round result: ' + ms + ' ms. Get ready for the next round…';
+      setArea('Nice — ' + ms + ' ms. Next round coming…', '#0E1526');
+      timeoutId = setTimeout(function(){
+        if (myToken !== window.__toolToken) { return; }
+        if (state !== 'between') { return; }
+        beginRound();
+      }, 900);
+      return;
+    }
+    $('#reaction-status').textContent = 'Press Start to begin a round.';
+  });
+}
+
+function ipTool(t){
+  window.__toolToken=(window.__toolToken||0)+1;
+  var myToken=window.__toolToken;
+  toolShell(t, `<div class="result" id="ip-result"><div class="loading show"><span class="spinner"></span><span>Looking up your IP address…</span></div></div><div class="actions"><button class="btn primary" id="ip-retry" type="button">Retry lookup</button><button class="btn secondary" id="ip-copy" type="button">Copy details</button></div>`, `This page tries to look up your public IP address, then shows details read locally in your browser. If the lookup is blocked, only the local details are shown and no IP address is displayed.`, []);
+  var detailsText='';
+  function localRows(){
+    var tz='Not available';
+    try{ tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'Not available'; }catch(e){}
+    var res='Not available';
+    if(typeof screen!=='undefined'&&screen.width&&screen.height){ res=screen.width+' × '+screen.height+' pixels'; }
+    var depth='Not available';
+    if(typeof screen!=='undefined'&&screen.colorDepth){ depth=screen.colorDepth+'-bit'; }
+    return [
+      ['User agent', (navigator.userAgent||'Not available')],
+      ['Browser language', (navigator.language||'Not available')],
+      ['Platform', (navigator.platform||'Not available')],
+      ['Screen resolution', res],
+      ['Color depth', depth],
+      ['Timezone', tz],
+      ['Online status', (navigator.onLine?'Online':'Offline')]
+    ];
+  }
+  function renderDetails(ip, showFallbackNote){
+    var rows=localRows();
+    var lines=[];
+    if(ip){ lines.push('Public IP address: '+ip); }
+    rows.forEach(function(r){ lines.push(r[0]+': '+r[1]); });
+    detailsText=lines.join('\n');
+    var html='';
+    if(ip){ html+='<div class="result-big">'+esc(ip)+'</div><p>Your public IP address.</p>'; }
+    if(showFallbackNote){ html+='<p>The public IP lookup could not be completed from this page, so no IP address is shown. The details below were read locally in your browser and were not sent anywhere.</p>'; }
+    html+='<div class="metric-grid">'+rows.map(function(r){ return metric(esc(r[0]), esc(r[1])); }).join('')+'</div>';
+    $('#ip-result').innerHTML=html;
+  }
+  function lookup(){
+    $('#ip-result').innerHTML='<div class="loading show"><span class="spinner"></span><span>Looking up your IP address…</span></div>';
+    if(typeof fetch!=='function'){ renderDetails('', true); return; }
+    var controller;
+    try{ controller=new AbortController(); }catch(e){ renderDetails('', true); return; }
+    var timer=setTimeout(function(){ try{ controller.abort(); }catch(e){} }, 6000);
+    fetch('https://api.ipify.org?format=json', {signal: controller.signal}).then(function(res){
+      clearTimeout(timer);
+      if(myToken!==window.__toolToken){ return null; }
+      if(!res.ok){ throw new Error('Lookup failed'); }
+      return res.json();
+    }).then(function(data){
+      if(myToken!==window.__toolToken){ return; }
+      if(!data){ return; }
+      var ip=(data.ip||'').toString().trim();
+      if(!ip){ renderDetails('', true); return; }
+      renderDetails(ip, false);
+    }).catch(function(){
+      clearTimeout(timer);
+      if(myToken!==window.__toolToken){ return; }
+      renderDetails('', true);
+    });
+  }
+  $('#ip-retry').addEventListener('click', function(){ lookup(); });
+  $('#ip-copy').addEventListener('click', function(){ copy(detailsText); });
+  lookup();
+}
+
+function urduKeyboard(t){
+  toolShell(t, `<div class="field"><label class="label" for="urdu-input">Your Urdu text</label><textarea class="textarea" id="urdu-input" dir="rtl" lang="ur" placeholder="یہاں لکھیں…" rows="5"></textarea></div><div class="field"><span class="label">Urdu keyboard</span><div id="urdu-keys"></div></div><div class="actions"><button class="btn secondary" id="urdu-space" type="button">Space</button><button class="btn secondary" id="urdu-backspace" type="button">Backspace</button><button class="btn secondary" id="urdu-clear" type="button">Clear</button><button class="btn primary" id="urdu-copy" type="button">Copy</button></div><div class="result" id="urdu-count"></div>`, `Tap the on-screen keys to type Urdu, or type directly in the text box. Use Copy to copy your text. This is a basic on-screen keyboard.`, []);
+  var rows=[
+    ['ا','ب','پ','ت','ٹ','ث','ج','چ','ح','خ','د','ڈ'],
+    ['ذ','ر','ڑ','ز','ژ','س','ش','ص','ض','ط','ظ'],
+    ['ع','غ','ف','ق','ک','گ','ل','م','ن','و'],
+    ['ہ','ھ','ء','ی','ے','۔','،','؟','۰','۱','۲','۳','۴','۵','۶','۷','۸','۹']
+  ];
+  var box=$('#urdu-input');
+  var keysEl=$('#urdu-keys');
+  var countEl=$('#urdu-count');
+  function updateCount(){ countEl.textContent='Characters: '+box.value.length; }
+  function insertText(txt){
+    var start=box.selectionStart, end=box.selectionEnd;
+    if(typeof start!=='number'){ box.value+=txt; box.focus(); updateCount(); return; }
+    box.value=box.value.slice(0,start)+txt+box.value.slice(end);
+    var pos=start+txt.length;
+    box.focus();
+    try{ box.setSelectionRange(pos,pos); }catch(e){}
+    updateCount();
+  }
+  rows.forEach(function(row){
+    var rowEl=document.createElement('div');
+    rowEl.style.display='flex';
+    rowEl.style.flexWrap='wrap';
+    rowEl.style.gap='6px';
+    rowEl.style.marginBottom='6px';
+    row.forEach(function(ch){
+      var b=document.createElement('button');
+      b.type='button';
+      b.className='btn secondary';
+      b.textContent=ch;
+      b.style.minWidth='40px';
+      b.style.padding='8px 6px';
+      b.style.minHeight='40px';
+      b.addEventListener('click', function(){ insertText(ch); });
+      rowEl.appendChild(b);
+    });
+    keysEl.appendChild(rowEl);
+  });
+  $('#urdu-space').addEventListener('click', function(){ insertText(' '); });
+  $('#urdu-backspace').addEventListener('click', function(){
+    var start=box.selectionStart, end=box.selectionEnd;
+    if(typeof start!=='number'||box.value.length===0){ return; }
+    if(start!==end){
+      box.value=box.value.slice(0,start)+box.value.slice(end);
+      box.focus();
+      try{ box.setSelectionRange(start,start); }catch(e){}
+    } else if(start>0){
+      box.value=box.value.slice(0,start-1)+box.value.slice(end);
+      box.focus();
+      try{ box.setSelectionRange(start-1,start-1); }catch(e){}
+    }
+    updateCount();
+  });
+  $('#urdu-clear').addEventListener('click', function(){ box.value=''; box.focus(); updateCount(); });
+  $('#urdu-copy').addEventListener('click', function(){ copy(box.value); });
+  box.addEventListener('input', function(){ updateCount(); });
+  updateCount();
+}
+
+function romanUrduConverter(t){
+  toolShell(t, `<div class="field"><label class="label" for="roman-input">Roman Urdu text</label><textarea class="textarea" id="roman-input" placeholder="e.g. Salam, mera naam Ahmed hai."></textarea></div><div class="actions"><button class="btn primary" id="roman-convert" type="button">Convert</button><button class="btn secondary" id="roman-example" type="button">Try an example</button><button class="btn secondary" id="roman-clear" type="button">Clear</button></div><div class="field"><label class="label" for="roman-output">Urdu output</label><textarea class="textarea" id="roman-output" dir="rtl" lang="ur" readonly placeholder="Urdu script will appear here."></textarea></div><div class="actions"><button class="btn secondary" id="roman-copy" type="button">Copy output</button></div><div class="result" id="roman-note"><p>This is a basic word converter, not a full translator. Unknown words stay in Roman Urdu.</p></div>`, `Type Roman Urdu, tap Convert, and known words are replaced with Urdu script. Words that are not in the built-in dictionary are left unchanged.`, []);
+  var dict={
+    salam:'سلام', shukriya:'شکریہ', kya:'کیا', hai:'ہے', mera:'میرا',
+    tum:'تم', aap:'آپ', acha:'اچھا', nahi:'نہیں', haan:'ہاں',
+    dil:'دل', mohabbat:'محبت', zindagi:'زندگی', khushi:'خوشی', dost:'دوست',
+    ghar:'گھر', paani:'پانی', khana:'کھانا', aaj:'آج', kal:'کل',
+    waqt:'وقت', baat:'بات', kaam:'کام', school:'اسکول', kitab:'کتاب',
+    paisa:'پیسہ', madad:'مدد', dua:'دعا', allah:'اللہ', pyar:'پیار',
+    bhai:'بھائی', behan:'بہن', maa:'ماں', baap:'باپ', bachcha:'بچہ',
+    larka:'لڑکا', larki:'لڑکی', achaa:'اچھا', bura:'برا', bara:'بڑا',
+    chota:'چھوٹا', jaldi:'جلدی', dheere:'دھیرے', kyun:'کیوں', kab:'کب',
+    kahan:'کہاں', kaun:'کون', kaise:'کیسے', aur:'اور', ya:'یا',
+    lekin:'لیکن', kyunki:'کیونکہ', bahut:'بہت', thoda:'تھوڑا', sab:'سب',
+    koi:'کوئی', kuch:'کچھ', abhi:'ابھی', phir:'پھر', jab:'جب',
+    agar:'اگر', mujhe:'مجھے', tujhe:'تجھے', uska:'اس کا', iska:'اس کا',
+    hamara:'ہمارا', tumhara:'تمہارا', aapka:'آپ کا', hoga:'ہوگا', tha:'تھا',
+    thi:'تھی', hain:'ہیں', ho:'ہو', kar:'کر', karo:'کرو',
+    gaya:'گیا', gayi:'گئی', raha:'رہا', rahi:'رہی', aao:'آؤ',
+    jao:'جاؤ', dekho:'دیکھو', suno:'سنو', bolo:'بولو', samajh:'سمجھ',
+    naam:'نام', mausam:'موسم', main:'میں', par:'پر', hoon:'ہوں'
+  };
+  var exampleText='Salam, mera naam Ahmed hai. Aaj mausam acha hai aur main ghar par hoon.';
+  function convert(){
+    var input=$('#roman-input').value;
+    if(!input.trim()){
+      $('#roman-note').innerHTML='<div class="error">Please enter some Roman Urdu text first.</div>';
+      $('#roman-output').value='';
+      return;
+    }
+    var unknown={};
+    var out=input.replace(/[A-Za-z]+/g, function(word){
+      var lower=word.toLowerCase();
+      if(Object.prototype.hasOwnProperty.call(dict, lower)){ return dict[lower]; }
+      unknown[lower]=word;
+      return word;
+    });
+    $('#roman-output').value=out;
+    var keys=Object.keys(unknown);
+    if(keys.length){
+      $('#roman-note').innerHTML='<p>This is a basic word converter, not a full translator. Unknown words were left unchanged: '+keys.map(function(k){ return esc(k); }).join(', ')+'.</p>';
+    } else {
+      $('#roman-note').innerHTML='<p>All words were found in the dictionary.</p>';
+    }
+  }
+  $('#roman-convert').addEventListener('click', function(){ convert(); });
+  $('#roman-example').addEventListener('click', function(){
+    $('#roman-input').value=exampleText;
+    convert();
+  });
+  $('#roman-clear').addEventListener('click', function(){
+    $('#roman-input').value='';
+    $('#roman-output').value='';
+    $('#roman-note').innerHTML='<p>This is a basic word converter, not a full translator. Unknown words stay in Roman Urdu.</p>';
+    $('#roman-input').focus();
+  });
+  $('#roman-copy').addEventListener('click', function(){ copy($('#roman-output').value); });
+}
+
+function screenRecorder(t){
+  window.__toolToken=(window.__toolToken||0)+1;
+  var myToken=window.__toolToken;
+  toolShell(t, `<div class="result"><div class="result-big" id="screen-timer">00:00</div><div id="screen-status">Tap Start recording, then choose a screen, window or tab to share.</div></div><div class="error" id="screen-error" style="display:none"></div><div class="actions"><button class="btn primary" id="screen-start" type="button">Start recording</button><button class="btn secondary" id="screen-stop" type="button" disabled>Stop</button><button class="btn secondary" id="screen-download" type="button" disabled>Download video</button></div><div class="field"><span class="label">Recording preview</span><video id="screen-preview" controls style="max-width:100%;display:none"></video></div>`, `Choose a screen, window or tab to share, then tap Start recording. The recording stays on this device and nothing is uploaded. Tap Stop, preview the video, then download it.`, []);
+  var recorder=null, stream=null, chunks=[], blobUrl='', iv=null, startAt=0, recording=false;
+  var startBtn=$('#screen-start'), stopBtn=$('#screen-stop'), dlBtn=$('#screen-download');
+  var statusEl=$('#screen-status'), timerEl=$('#screen-timer'), errEl=$('#screen-error'), preview=$('#screen-preview');
+  function showErr(msg){ errEl.textContent=msg; errEl.style.display='block'; }
+  function hideErr(){ errEl.textContent=''; errEl.style.display='none'; }
+  function fmtElapsed(ms){
+    var s=Math.floor(ms/1000);
+    return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+  }
+  function stopTimer(){ if(iv){ clearInterval(iv); iv=null; } }
+  function finishRecording(){
+    stopTimer();
+    recording=false;
+    startBtn.disabled=false;
+    stopBtn.disabled=true;
+    if(stream){
+      stream.getTracks().forEach(function(tr){ try{ tr.stop(); }catch(e){} });
+      stream=null;
+    }
+  }
+  startBtn.addEventListener('click', function(){
+    hideErr();
+    if(!navigator.mediaDevices||typeof navigator.mediaDevices.getDisplayMedia!=='function'){
+      showErr('Screen capture is not supported in this browser.');
+      return;
+    }
+    if(recording){ return; }
+    navigator.mediaDevices.getDisplayMedia({video:true,audio:true}).then(function(s){
+      stream=s;
+      chunks=[];
+      blobUrl='';
+      preview.removeAttribute('src');
+      preview.style.display='none';
+      dlBtn.disabled=true;
+      try{ recorder=new MediaRecorder(stream); }catch(e){
+        showErr('Recording could not be started in this browser.');
+        finishRecording();
+        return;
+      }
+      recorder.ondataavailable=function(e){ if(e.data&&e.data.size>0){ chunks.push(e.data); } };
+      recorder.onstop=function(){
+        var mime='video/webm';
+        try{ if(recorder.mimeType){ mime=recorder.mimeType; } }catch(e){}
+        var blob=new Blob(chunks,{type:mime});
+        if(blobUrl){ try{ URL.revokeObjectURL(blobUrl); }catch(e){} }
+        blobUrl=URL.createObjectURL(blob);
+        preview.src=blobUrl;
+        preview.style.display='block';
+        dlBtn.disabled=false;
+        statusEl.textContent='Recording stopped. Preview the video above, then tap Download video.';
+      };
+      var tracks=stream.getVideoTracks();
+      if(tracks.length){
+        tracks[0].onended=function(){
+          if(recording&&recorder&&recorder.state!=='inactive'){ try{ recorder.stop(); }catch(e){} }
+          finishRecording();
+        };
+      }
+      recorder.start();
+      recording=true;
+      startAt=Date.now();
+      timerEl.textContent='00:00';
+      statusEl.textContent='Recording… Tap Stop when you are finished.';
+      startBtn.disabled=true;
+      stopBtn.disabled=false;
+      iv=setInterval(function(){
+        if(myToken!==window.__toolToken){ clearInterval(iv); iv=null; return; }
+        timerEl.textContent=fmtElapsed(Date.now()-startAt);
+      }, 250);
+    }).catch(function(e){
+      if(e&&e.name==='NotAllowedError'){ showErr('Permission was denied. Allow screen sharing and try again.'); }
+      else{ showErr('Screen recording could not be started. Please try again.'); }
+    });
+  });
+  stopBtn.addEventListener('click', function(){
+    if(!recording||!recorder){ return; }
+    try{ if(recorder.state!=='inactive'){ recorder.stop(); } }catch(e){}
+    finishRecording();
+    statusEl.textContent='Finishing recording…';
+  });
+  dlBtn.addEventListener('click', function(){
+    if(!blobUrl){ toast('No recording to download yet.'); return; }
+    download(blobUrl, 'hectool-screen-recording.webm');
+  });
+}
+
+function thumbnailMaker(t){
+  toolShell(t, uploadUI('thumb','Upload a background image')+`<div class="file-meta" id="thumb-meta"></div><div class="field"><label class="label" for="thumb-top">Top text</label><input class="input" id="thumb-top" type="text" placeholder="e.g. I SURVIVED 100 DAYS"></div><div class="field"><label class="label" for="thumb-bottom">Bottom text</label><input class="input" id="thumb-bottom" type="text" placeholder="e.g. IN HARDCORE MINECRAFT"></div><div class="row"><div class="field"><label class="label" for="thumb-size">Text size (40–140): <span id="thumb-size-value">80</span></label><input class="range" id="thumb-size" type="range" min="40" max="140" step="1" value="80"></div><div class="field"><label class="label" for="thumb-color">Text colour</label><select class="select" id="thumb-color"><option value="#FFFFFF" selected>White</option><option value="#FACC15">Yellow</option><option value="#EF4444">Red</option><option value="#111827">Black</option></select></div></div><div class="field"><span class="label">Thumbnail preview (1280 × 720)</span><canvas id="thumb-canvas" width="1280" height="720" style="max-width:100%;height:auto;border-radius:12px"></canvas></div><div class="error" id="thumb-error" style="display:none"></div><div class="actions"><button class="btn primary" id="thumb-download" type="button">Download PNG</button></div>`, `Upload a background image or use the blue gradient, add top and bottom text, adjust the size and colour, then download the 1280×720 PNG. The thumbnail is made in your browser and nothing is uploaded.`, []);
+  var canvas=$('#thumb-canvas');
+  var ctx=canvas.getContext('2d');
+  var bgImg=null;
+  var errEl=$('#thumb-error');
+  function showErr(msg){ errEl.textContent=msg; errEl.style.display='block'; }
+  function hideErr(){ errEl.textContent=''; errEl.style.display='none'; }
+  function wrapLines(text, maxWidth){
+    var words=text.split(/\s+/).filter(function(w){ return w.length>0; });
+    var lines=[], line='';
+    words.forEach(function(w){
+      var test=line?line+' '+w:w;
+      if(ctx.measureText(test).width>maxWidth&&line){ lines.push(line); line=w; }
+      else{ line=test; }
+    });
+    if(line){ lines.push(line); }
+    return lines;
+  }
+  function drawTextBlock(text, y, size, color, fromBottom){
+    if(!text.trim()){ return; }
+    ctx.font='bold '+size+'px Arial, Helvetica, sans-serif';
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
+    var lines=wrapLines(text.trim(), 1180);
+    var lineH=size*1.15;
+    var startY=y;
+    if(fromBottom){ startY=y-(lines.length-1)*lineH; }
+    ctx.lineWidth=Math.max(4, size/8);
+    ctx.strokeStyle='rgba(0,0,0,0.85)';
+    ctx.fillStyle=color;
+    lines.forEach(function(ln, i){
+      var ly=startY+i*lineH;
+      ctx.strokeText(ln, 640, ly);
+      ctx.fillText(ln, 640, ly);
+    });
+  }
+  function draw(){
+    if(bgImg){
+      var scale=Math.max(1280/bgImg.width, 720/bgImg.height);
+      var dw=bgImg.width*scale, dh=bgImg.height*scale;
+      ctx.drawImage(bgImg, (1280-dw)/2, (720-dh)/2, dw, dh);
+    } else {
+      var g=ctx.createLinearGradient(0,0,1280,720);
+      g.addColorStop(0,'#2563eb');
+      g.addColorStop(1,'#1e3a8a');
+      ctx.fillStyle=g;
+      ctx.fillRect(0,0,1280,720);
+    }
+    var size=parseInt($('#thumb-size').value,10)||80;
+    var color=$('#thumb-color').value;
+    drawTextBlock($('#thumb-top').value, 110, size, color, false);
+    drawTextBlock($('#thumb-bottom').value, 610, size, color, true);
+  }
+  bindImageUpload('thumb', function(data){
+    bgImg=data.img;
+    hideErr();
+    $('#thumb-meta').innerHTML='<span>'+esc(data.file.name)+'</span><span>'+esc(bytes(data.file.size))+'</span><span>'+esc(String(data.img.width))+' × '+esc(String(data.img.height))+' px</span>';
+    draw();
+  });
+  ['thumb-top','thumb-bottom'].forEach(function(id){
+    $('#'+id).addEventListener('input', function(){ hideErr(); draw(); });
+  });
+  $('#thumb-size').addEventListener('input', function(){
+    $('#thumb-size-value').textContent=$('#thumb-size').value;
+    draw();
+  });
+  $('#thumb-color').addEventListener('change', function(){ draw(); });
+  $('#thumb-download').addEventListener('click', function(){
+    var top=$('#thumb-top').value.trim(), bottom=$('#thumb-bottom').value.trim();
+    if(!top&&!bottom&&!bgImg){ showErr('Add some text or upload a background image first.'); return; }
+    hideErr();
+    draw();
+    canvas.toBlob(function(blob){
+      if(!blob){ showErr('The PNG could not be created. Please try again.'); return; }
+      var url=URL.createObjectURL(blob);
+      download(url, 'hectool-thumbnail.png');
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+    }, 'image/png');
+  });
+  draw();
+}
+
+function matrixCalc(t){
+  toolShell(t, `<div class="row"><div class="field"><label class="label" for="matrix-size">Matrix size</label><select class="select" id="matrix-size"><option value="2" selected>2 × 2</option><option value="3">3 × 3</option></select></div><div class="field"><label class="label" for="matrix-op">Operation</label><select class="select" id="matrix-op"><option value="add" selected>A + B</option><option value="sub">A − B</option><option value="mul">A × B</option><option value="detA">Determinant of A</option><option value="detB">Determinant of B</option><option value="transA">Transpose of A</option><option value="transB">Transpose of B</option></select></div></div><div class="field"><div class="label">Matrix A</div><div id="matrix-a"></div></div><div class="field"><div class="label">Matrix B</div><div id="matrix-b"></div></div><div class="actions"><button class="btn primary" id="matrix-calc" type="button">Calculate</button></div><div class="result" id="matrix-result"></div>`, `Choose 2×2 or 3×3, fill in the numbers, pick an operation and tap Calculate. Determinants and transposes use one matrix; addition, subtraction and multiplication use both.`, []);
+  function buildGrid(elId, prefix, n, saved){
+    var el=$('#'+elId);
+    el.innerHTML='';
+    el.style.display='grid';
+    el.style.gridTemplateColumns='repeat('+n+', minmax(0,1fr))';
+    el.style.gap='8px';
+    el.style.maxWidth='360px';
+    for(var r=0;r<n;r++){
+      for(var c=0;c<n;c++){
+        var inp=document.createElement('input');
+        inp.className='input';
+        inp.type='number';
+        inp.step='any';
+        inp.id=prefix+'-'+r+'-'+c;
+        inp.setAttribute('aria-label', (prefix==='matrix-a'?'Matrix A':'Matrix B')+' row '+(r+1)+' column '+(c+1));
+        inp.placeholder='0';
+        if(saved&&saved[prefix+'-'+r+'-'+c]!==undefined){ inp.value=saved[prefix+'-'+r+'-'+c]; }
+        el.appendChild(inp);
+      }
+    }
+  }
+  function readSaved(){
+    var saved={};
+    $$('#matrix-a input, #matrix-b input').forEach(function(inp){ saved[inp.id]=inp.value; });
+    return saved;
+  }
+  function buildAll(){
+    var saved=readSaved();
+    var n=parseInt($('#matrix-size').value,10);
+    buildGrid('matrix-a','matrix-a',n,saved);
+    buildGrid('matrix-b','matrix-b',n,saved);
+  }
+  function readMatrix(prefix, n){
+    var m=[];
+    for(var r=0;r<n;r++){
+      var row=[];
+      for(var c=0;c<n;c++){
+        var v=parseFloat($('#'+prefix+'-'+r+'-'+c).value);
+        if(!isFinite(v)){ return null; }
+        row.push(v);
+      }
+      m.push(row);
+    }
+    return m;
+  }
+  function fmtNum(x){
+    var r=Math.round(x*10000)/10000;
+    if(r===0){ r=0; }
+    return String(r);
+  }
+  function renderMatrix(m, heading){
+    var html='<h3>'+esc(heading)+'</h3><table style="border-collapse:collapse"><tbody>';
+    m.forEach(function(row){
+      html+='<tr>';
+      row.forEach(function(v){
+        html+='<td style="border:1px solid var(--line);padding:8px 14px;text-align:right">'+esc(fmtNum(v))+'</td>';
+      });
+      html+='</tr>';
+    });
+    html+='</tbody></table>';
+    return html;
+  }
+  function det(m){
+    if(m.length===2){ return m[0][0]*m[1][1]-m[0][1]*m[1][0]; }
+    return m[0][0]*(m[1][1]*m[2][2]-m[1][2]*m[2][1])-m[0][1]*(m[1][0]*m[2][2]-m[1][2]*m[2][0])+m[0][2]*(m[1][0]*m[2][1]-m[1][1]*m[2][0]);
+  }
+  function transpose(m){
+    var out=[];
+    for(var i=0;i<m.length;i++){
+      var row=[];
+      for(var j=0;j<m.length;j++){ row.push(m[j][i]); }
+      out.push(row);
+    }
+    return out;
+  }
+  $('#matrix-size').addEventListener('change', function(){ buildAll(); });
+  $('#matrix-calc').addEventListener('click', function(){
+    var res=$('#matrix-result');
+    var n=parseInt($('#matrix-size').value,10);
+    var op=$('#matrix-op').value;
+    var needA=(op!=='detB'&&op!=='transB');
+    var needB=(op!=='detA'&&op!=='transA');
+    var A=null, B=null;
+    if(needA){
+      A=readMatrix('matrix-a', n);
+      if(!A){ res.innerHTML='<div class="error">Please enter a number in every cell of Matrix A.</div>'; return; }
+    }
+    if(needB){
+      B=readMatrix('matrix-b', n);
+      if(!B){ res.innerHTML='<div class="error">Please enter a number in every cell of Matrix B.</div>'; return; }
+    }
+    if(op==='detA'){ res.innerHTML='<div class="result-big">Determinant of A: '+esc(fmtNum(det(A)))+'</div>'; return; }
+    if(op==='detB'){ res.innerHTML='<div class="result-big">Determinant of B: '+esc(fmtNum(det(B)))+'</div>'; return; }
+    if(op==='transA'){ res.innerHTML=renderMatrix(transpose(A),'Transpose of A'); return; }
+    if(op==='transB'){ res.innerHTML=renderMatrix(transpose(B),'Transpose of B'); return; }
+    var out=[];
+    for(var i=0;i<n;i++){
+      var row=[];
+      for(var j=0;j<n;j++){
+        if(op==='add'){ row.push(A[i][j]+B[i][j]); }
+        else if(op==='sub'){ row.push(A[i][j]-B[i][j]); }
+        else{
+          var sum=0;
+          for(var k=0;k<n;k++){ sum+=A[i][k]*B[k][j]; }
+          row.push(sum);
+        }
+      }
+      out.push(row);
+    }
+    var heading=op==='add'?'A + B':(op==='sub'?'A − B':'A × B');
+    res.innerHTML=renderMatrix(out, heading);
+  });
+  buildAll();
+}
+
+function ibanValidator(t){
+  toolShell(t, `<div class="field"><label class="label" for="iban-input">IBAN</label><input class="input" id="iban-input" type="text" placeholder="e.g. GB29 NWBK 6016 1331 9268 19" autocomplete="off" spellcheck="false"></div><div class="actions"><button class="btn primary" id="iban-validate" type="button">Validate IBAN</button><button class="btn secondary" id="iban-example" type="button">Use example IBAN</button></div><div class="result" id="iban-result"></div>`, `Enter an IBAN with or without spaces, then tap Validate IBAN. The format, country length and mod-97 checksum are checked in your browser.`, []);
+  var lengths={GB:22,DE:22,FR:27,CH:21,AE:23,SA:24,PK:24,TR:26,EG:29,QA:29,KW:30,BH:22,JO:30,IQ:23,LB:28,MT:31,IT:27,ES:24,NL:18,BE:16,AT:20,SE:24,NO:15,DK:18,FI:18,PL:28,GR:27};
+  function mod97(s){
+    var rearranged=s.slice(4)+s.slice(0,4);
+    var mod=0;
+    for(var i=0;i<rearranged.length;i++){
+      var ch=rearranged.charAt(i);
+      if(ch>='0'&&ch<='9'){ mod=(mod*10+parseInt(ch,10))%97; }
+      else{
+        var v=ch.charCodeAt(0)-55;
+        mod=(mod*10+Math.floor(v/10))%97;
+        mod=(mod*10+(v%10))%97;
+      }
+    }
+    return mod;
+  }
+  function validate(){
+    var res=$('#iban-result');
+    var raw=$('#iban-input').value||'';
+    var iban=raw.replace(/\s+/g,'').toUpperCase();
+    if(!iban){ res.innerHTML='<div class="error">Please enter an IBAN first.</div>'; return; }
+    var formatted=(iban.match(/.{1,4}/g)||[]).join(' ');
+    var country=iban.slice(0,2);
+    var formatOk=/^[A-Z]{2}[0-9]{2}[A-Z0-9]+$/.test(iban);
+    if(country==='IN'||country==='US'){
+      res.innerHTML='<h3>IBAN check</h3><p><strong>Formatted IBAN:</strong> '+esc(formatted)+'</p><p><strong>Country code:</strong> '+esc(country)+'</p><div class="error">'+esc(country)+' does not use IBAN, so this cannot be a valid IBAN.</div><p>This check covers format and checksum only. It does not verify that the account exists.</p>';
+      return;
+    }
+    var expected=lengths[country];
+    var lengthOk=(expected===undefined)?null:(iban.length===expected);
+    var checksumOk=false, checksumText='Not checked';
+    if(formatOk){
+      var m=mod97(iban);
+      checksumOk=(m===1);
+      checksumText=checksumOk?'Pass (mod-97 = 1)':'Fail (mod-97 = '+m+')';
+    } else {
+      checksumText='Not checked (format invalid)';
+    }
+    var valid=formatOk&&checksumOk&&(lengthOk!==false);
+    var html='<h3>IBAN check</h3>';
+    html+='<p><strong>Formatted IBAN:</strong> '+esc(formatted)+'</p>';
+    html+='<div class="metric-grid">'+metric('Country code', esc(country))+metric('Expected length', expected===undefined?'Not in table':esc(String(expected)))+metric('Actual length', esc(String(iban.length)))+metric('Checksum', esc(checksumText))+'</div>';
+    if(!formatOk){
+      html+='<div class="error">The IBAN format is invalid. It must start with 2 letters (country code) and 2 digits (check digits), followed by letters and digits only.</div>';
+    } else if(lengthOk===false){
+      html+='<div class="error">The length is wrong for this country: expected '+expected+' characters, found '+iban.length+'.</div>';
+    } else if(expected===undefined){
+      html+='<p>Country not in the table, checksum only: the length could not be checked for this country code.</p>';
+    }
+    if(valid){ html+='<p><strong>Valid IBAN format and checksum.</strong></p>'; }
+    else if(formatOk){ html+='<p><strong>Invalid IBAN.</strong></p>'; }
+    html+='<p>This check covers format and checksum only. It does not verify that the account exists.</p>';
+    res.innerHTML=html;
+  }
+  $('#iban-validate').addEventListener('click', function(){ validate(); });
+  $('#iban-example').addEventListener('click', function(){
+    $('#iban-input').value='GB29 NWBK 6016 1331 9268 19';
+    validate();
+  });
+}
+
+function sitemapGen(t){
+  toolShell(t, `<div class="field"><label class="label" for="sitemap-urls">URLs (one per line)</label><textarea class="textarea" id="sitemap-urls" placeholder="https://example.com/&#10;https://example.com/about"></textarea></div><div class="row"><div class="field"><label class="label" for="sitemap-lastmod">Last modified date (optional)</label><input class="input" id="sitemap-lastmod" type="date"></div><div class="field"><label class="label" for="sitemap-changefreq">Change frequency</label><select class="select" id="sitemap-changefreq"><option value="" selected>No change frequency</option><option value="always">always</option><option value="hourly">hourly</option><option value="daily">daily</option><option value="weekly">weekly</option><option value="monthly">monthly</option><option value="yearly">yearly</option><option value="never">never</option></select></div></div><div class="field"><label class="label" for="sitemap-priority">Priority</label><select class="select" id="sitemap-priority"><option value="0.0">0.0</option><option value="0.1">0.1</option><option value="0.2">0.2</option><option value="0.3">0.3</option><option value="0.4">0.4</option><option value="0.5" selected>0.5</option><option value="0.6">0.6</option><option value="0.7">0.7</option><option value="0.8">0.8</option><option value="0.9">0.9</option><option value="1.0">1.0</option></select></div><div class="actions"><button class="btn primary" id="sitemap-generate" type="button">Generate sitemap</button><button class="btn secondary" id="sitemap-download" type="button" disabled>Download sitemap.xml</button></div><div class="error" id="sitemap-errors" style="display:none"></div><div class="result" id="sitemap-count"></div><div class="field"><span class="label">Sitemap preview</span><pre id="sitemap-preview" style="white-space:pre-wrap;overflow-wrap:anywhere"></pre></div>`, `Paste one URL per line, choose the optional last-modified date, change frequency and priority, then tap Generate sitemap. Download the sitemap.xml file and upload it to your website.`, []);
+  var xml='';
+  function generate(){
+    var errorsEl=$('#sitemap-errors');
+    var countEl=$('#sitemap-count');
+    var preview=$('#sitemap-preview');
+    var dlBtn=$('#sitemap-download');
+    var lines=$('#sitemap-urls').value.split(/\r?\n/);
+    var valid=[], invalid=[];
+    lines.forEach(function(line, idx){
+      var trimmed=line.trim();
+      if(!trimmed){ return; }
+      var url=null;
+      try{ url=new URL(trimmed); }catch(e){ url=null; }
+      if(!url||(url.protocol!=='http:'&&url.protocol!=='https:')){ invalid.push({line:idx+1, text:trimmed}); return; }
+      valid.push(url.href);
+    });
+    if(invalid.length){
+      errorsEl.innerHTML='<strong>Invalid URLs (excluded):</strong><br>'+invalid.map(function(it){ return 'Line '+it.line+': '+esc(it.text); }).join('<br>');
+      errorsEl.style.display='block';
+    } else {
+      errorsEl.innerHTML='';
+      errorsEl.style.display='none';
+    }
+    if(!valid.length){
+      xml='';
+      countEl.textContent='No valid URLs yet.';
+      preview.textContent='';
+      dlBtn.disabled=true;
+      if(!invalid.length){
+        errorsEl.textContent='Please enter at least one valid http:// or https:// URL.';
+        errorsEl.style.display='block';
+      }
+      return;
+    }
+    var lastmod=$('#sitemap-lastmod').value;
+    var freq=$('#sitemap-changefreq').value;
+    var prio=$('#sitemap-priority').value;
+    var out='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+    valid.forEach(function(u){
+      out+='  <url>\n    <loc>'+esc(u)+'</loc>\n';
+      if(lastmod){ out+='    <lastmod>'+esc(lastmod)+'</lastmod>\n'; }
+      if(freq){ out+='    <changefreq>'+esc(freq)+'</changefreq>\n'; }
+      out+='    <priority>'+esc(prio)+'</priority>\n  </url>\n';
+    });
+    out+='</urlset>';
+    xml=out;
+    countEl.textContent='Entries: '+valid.length;
+    preview.textContent=xml;
+    dlBtn.disabled=false;
+  }
+  $('#sitemap-generate').addEventListener('click', function(){ generate(); });
+  $('#sitemap-download').addEventListener('click', function(){
+    if(!xml){ toast('Generate a sitemap first.'); return; }
+    var blob=new Blob([xml],{type:'application/xml'});
+    var url=URL.createObjectURL(blob);
+    download(url, 'sitemap.xml');
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+  });
+}
 window.addEventListener('hashchange',route);route();
 })();
